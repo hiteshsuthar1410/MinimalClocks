@@ -12,8 +12,7 @@ import SwiftUI
 struct MinimalClocksApp: App {
     var body: some Scene {
         WindowGroup {
-            //            ContentView()
-            GradientBackgroundView()
+            ContentView()
         }
     }
     init() { FirebaseApp.configure() }

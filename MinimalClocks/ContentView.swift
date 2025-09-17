@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import Kingfisher
+import WidgetKit
+import FirebaseAuth
+import Firebase
 
 struct ContentView: View {
+    @Environment(\.scenePhase) private var scenePhase
     var columns = [
             GridItem(.flexible()), // First column
             GridItem(.flexible())  // Second column
@@ -16,6 +21,9 @@ struct ContentView: View {
     var column = [
             GridItem(.flexible()), // First column
         ]
+    
+    @State private var quotes = [Quote]()
+    @State private var imageURL: URL?
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 0) {
@@ -80,61 +88,46 @@ struct ContentView: View {
                     .padding(.horizontal)
                     .padding(.vertical, 6)
                 
-                LazyVGrid(columns: columns, spacing: 16) {
-                    
-                    Button {
-                    } label: {
-                        ZStack {
-                            Rectangle().fill(Color.gray.opacity(0.1))
-                            //                        .frame(width: 200, height: 200)
-                                .aspectRatio(contentMode: .fit)
-                                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                            
-                            DayProgressCircleView(date: Date(), progressType: .completed)
-                        }
-                    }
-                    ZStack {
-                        Rectangle().fill(Color.gray.opacity(0.1))
-                        //                        .frame(width: 200, height: 200)
-                            .aspectRatio(contentMode: .fit)
-                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                        
-                        DayProgressCircleView(date: Date(), progressType: .remaining)
-                    }
-                    ZStack {
-                        Rectangle().fill(Color.gray.opacity(0.1))
-                        //                        .frame(width: 200, height: 200)
-                            .aspectRatio(contentMode: .fit)
-                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                        
-                        DayProgressCircleView(date: Date(), progressType: .remaining)
-                    }
-                    
-                    Button {
-                    } label: {
-                        ZStack {
-                            Rectangle().fill(Color.gray.opacity(0.1))
-                            //                        .frame(width: 200, height: 200)
-                                .aspectRatio(contentMode: .fit)
-                                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                            HStack {
-                                Text("More Options please!")
-                                Image(systemName: "chevron.right.circle")
+                VStack {
+                    LazyVGrid(columns: columns) {
+                        Button {
+                        } label: {
+                            ZStack {
+                                Rectangle().fill(Color.gray.opacity(0.1))
+                                    .aspectRatio(contentMode: .fit)
+                                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                
+                                DayProgressCircleView(date: Date(), progressType: .completed)
                             }
-                            //                        DayProgressCircleView(date: Date(), progressType: .completed)
                         }
+                        
+                        Button {
+                        } label: {
+                            ZStack {
+                                Rectangle().fill(Color.gray.opacity(0.1))
+                                    .aspectRatio(contentMode: .fit)
+                                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                
+                                DayProgressCircleView(date: Date(), progressType: .remaining)
+                            }
+                        }
+                        
+                        //                    Button {
+                        //                    } label: {
+                        //                        ZStack {
+                        //                            Rectangle().fill(Color.gray.opacity(0.1))
+                        //                                .aspectRatio(contentMode: .fit)
+                        //                                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                        //                            HStack {
+                        //                                Text("More Options please!")
+                        //                                Image(systemName: "chevron.right.circle")
+                        //                            }
+                        //                        }
+                        //                    }
                     }
                     
-                }
-                .padding(.horizontal)
-                .padding(.bottom, 12)
-                
-                Text("Productivity (Medium)")
-                    .font(.custom("Outfit", size: 24))
-                    .padding(.horizontal)
-                    .padding(.vertical, 6)
-                
-                LazyVGrid(columns: column, spacing: 16) {
+                    
+                    
                     
                     ZStack {
                         Rectangle().fill(Color.gray.opacity(0.1))
@@ -155,18 +148,122 @@ struct ContentView: View {
                         DayProgressBarView(date: Date(), progressType: .remaining)
                     }
                     
+                    
+                }
+                .padding(.horizontal)
+                    
+    
+                
+                
+                Text("Productivity (Medium)")
+                    .font(.custom("Outfit", size: 24))
+                    .padding(.horizontal)
+                    .padding(.vertical, 6)
+                
+                ZStack {
+                    Rectangle().fill(Color.gray.opacity(0.1))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 160)
+                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    
+                    MotivationalQuoteView(entry: MotivationalQuoteWidgetEntry.init(date: Date(), quote: Quote.preview, unsplashPhoto: UnsplashPhoto.preview, image: nil))
+                        
                 }
                 .padding(.horizontal)
             }
         }
+        .task {
+            do {
+                // Basic random quote fetch
+                //let quote = try await QuoteService.shared.fetchRandomQuote()
+//                print("Random quote: \(quote.text) - \(quote.author)")
+                
+            } catch {
+                print("Error: \(error)")
+            }
+            
+//            do {
+//                    // Fetch random photo and its metadata
+//                let photo = try await UnsplashPhotoService.shared().fetchRandomPhoto(query: "nature")
+//                    
+//                    // Access image URL and metadata
+//                if let urlString = photo.urls?.regular {
+//                    if let url = URL(string: urlString) {
+//                        self.imageURL = url
+//                    }
+//                }
+//                    print("Image URL: \(photo.urls?.regular)")
+//                    print("Photo ID: \(photo.id)")
+//                    print("Description: \(photo.description ?? "No description")")
+//                    print("Alt Description: \(photo.altDescription ?? "No alt description")")
+//                    print("Photographer: \(photo.user?.name) (@\(photo.user?.username))")
+//                    print("Created At: \(photo.createdAt)")
+//                    
+//                    // Use this data in your app as needed
+//                } catch {
+//                    print("Error fetching photo: \(error)")
+//                }
+            
+                    QuoteService.shared.fetch(Quote.self, from: "PositiveQuotesDataset") { result in
+                        
+                            switch result {
+                            case .success(let items):
+                                // Create your timeline entries with the items
+                                self.quotes = items
+                                print(items)
+
+            
+                            case .failure(let error):
+                                print("Error: \(error)")
+                                // Handle error and create a fallback timeline
+                                let entries = [MotivationalQuoteWidgetEntry(date: Date(), quote: Quote.preview, unsplashPhoto: nil, image: nil)]
+                            }
+                        }
+            if let user = Auth.auth().currentUser {
+                user.getIDTokenResult { result, error in
+                    if error != nil {
+                        debugPrint(error, terminator: "\n\n")
+                    }
+                    debugPrint(result, terminator: "\n\n")
+                }
+            } else {
+                debugPrint("\ncurrent user is nil")
+            }
+
+              // Send token to your backend via HTTPS
+              // ...
+            
+
+//            let currentUser = FirebaseAuth.auth()?.currentUser
+//            currentUser?.getIDToken(forcingRefresh: true) { idToken, error in
+//                
+//            }
+//            currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+////              if let error = error {
+////                // Handle error
+////                  debugPrint(error)
+////                return;
+////              }
+////                debugPrint(idToken)
+//
+//            }
+
+        }
+        .onChange(of: scenePhase) { newPhase in
+            switch newPhase {
+            case .background:
+                WidgetCenter.shared.reloadAllTimelines()
+            default:
+                break
+            }
+        }
     }
 }
-@available(iOS 17.0, *)
-#Preview {
-    ContentView()
-}
+//@available(iOS 17.0, *)
+//#Preview {
+//    ContentView()
+//}
 
-import SwiftUI
 
 struct PillButtonView: View {
     @State private var isSelected = false

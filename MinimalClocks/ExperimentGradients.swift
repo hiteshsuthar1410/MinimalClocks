@@ -9,6 +9,7 @@ struct GradientBackgroundView: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var startColor: Color = .blue
     @State private var endColor: Color = .purple
+    let uploader = QuoteUploader()
     
     var body: some View {
         
@@ -42,6 +43,19 @@ struct GradientBackgroundView: View {
                            endPoint: .bottomTrailing)
         )
         .edgesIgnoringSafeArea(.all)
+//        .task {
+//        do {
+//                    guard let jsonURL = Bundle.main.url(forResource: "PositiveQuotesDataset", withExtension: "json") else {
+//                        print("JSON file not found")
+//                        return
+//                    }
+//                    
+//                    let count = try await uploader.uploadQuotesFromJSON(fileURL: jsonURL)
+//                    print("Successfully uploaded \(count) quotes")
+//                } catch {
+//                    print("Error uploading quotes: \(error)")
+//                }
+//        }
     }
     
     /// Generate a random gradient with harmonious colors.

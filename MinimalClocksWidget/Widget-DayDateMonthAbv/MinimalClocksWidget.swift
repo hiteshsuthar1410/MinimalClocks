@@ -20,14 +20,10 @@ struct Provider: TimelineProvider {
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
         let currentDate = Date()
-        
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone.current // Adjust to local timezone
-        let nextMidnight = calendar.nextDate(after: currentDate, matching: DateComponents(hour: 0), matchingPolicy: .nextTime)!
-        
+         
         // Create the timeline
         let entry = SimpleEntry(date: currentDate)
-        let timeline = Timeline(entries: [entry], policy: .after(nextMidnight))
+        let timeline = Timeline(entries: [entry], policy: .after(Date.tomorrowMidnight))
         
         completion(timeline)
     }
