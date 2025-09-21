@@ -6,6 +6,7 @@
 //
 
 import Firebase
+import SwiftData
 import SwiftUI
 
 @main
@@ -14,6 +15,7 @@ struct MinimalClocksApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: QuoteModel.self)
     }
     init() { FirebaseApp.configure() }
 }

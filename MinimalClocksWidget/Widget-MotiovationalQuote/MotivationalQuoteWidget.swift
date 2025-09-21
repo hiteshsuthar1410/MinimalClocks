@@ -8,55 +8,50 @@
 import SwiftUI
 import Kingfisher
 import WidgetKit
+import SwiftData
+
 @available(iOSApplicationExtension 17, *)
 struct MotivationalQuoteWidgetProvider: TimelineProvider {
-    
+
     typealias Entry = MotivationalQuoteWidgetEntry
     
     func placeholder(in context: Context) -> MotivationalQuoteWidgetEntry {
-        MotivationalQuoteWidgetEntry(date: Date(), quote: Quote.preview, unsplashPhoto: UnsplashPhoto.preview, image: Image(systemName: "photo"))
+        MotivationalQuoteWidgetEntry(date: Date(), quote: QuoteModel.preview, unsplashPhoto: UnsplashPhoto.preview, image: UIImage(named: "backupGradi"))
     }
     
     func getSnapshot(in context: Context, completion: @escaping (MotivationalQuoteWidgetEntry) -> Void) {
-        let entry = MotivationalQuoteWidgetEntry(date: Date(), quote: Quote.preview, unsplashPhoto: UnsplashPhoto.preview, image: Image(systemName: "photo"))
+        let entry = MotivationalQuoteWidgetEntry(date: Date(), quote: QuoteModel.preview, unsplashPhoto: UnsplashPhoto.preview, image: UIImage(named: "backupGradi"))
         completion(entry)
     }
     
     
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<MotivationalQuoteWidgetEntry>) -> Void) {
-//        Task {
-//            do {/Users/novotraxdev1/Documents/Hitesh Suthar/quotes.json
-//                let quote = try await QuoteService.shared.fetchRandomQuote()
-//                let entry = MotivationalQuoteWidgetEntry(date: .now, quote: quote, unsplashPhoto: nil, image: nil)
-//                let timeline = Timeline(entries: [entry], policy: .after(Date.tomorrowMidnight))
-//                completion(timeline)
-//            } catch {
-//                let entry = MotivationalQuoteWidgetEntry(date: .now, quote: Quote.preview, unsplashPhoto: nil, image: nil)
-//                let timeline = Timeline(entries: [entry], policy: .after(Date.tomorrowMidnight))
-//                completion(timeline)
-//            }
-//        }
-            let url = URL(string: "http://numbersapi.com/random/trivia")!
-            let request = URLRequest(url: url)
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let data {
-                    let respose = String(decoding: data, as: UTF8.self)
-                    let entry = MotivationalQuoteWidgetEntry(date: .now, quote: Quote(id: "autg", text: respose, author: "sdsd", source: ""), unsplashPhoto: nil, image: nil)
-                    let nextRefresh = Calendar.current.date(byAdding: .minute, value: 5, to: Date())!
-                    let timeline = Timeline(entries: [entry], policy: .after(nextRefresh))
-                    completion(timeline)
-                } else {
-                    let entry = MotivationalQuoteWidgetEntry(date: .now, quote: Quote(id: "autg", text: error?.localizedDescription ?? "Kuch error", author: "sdsd", source: ""), unsplashPhoto: nil, image: nil)
-                    let timeline = Timeline(entries: [entry], policy: .after(Date.tomorrowMidnight))
-                    completion(timeline)
-                }
+        Task {
+            do {
+                
+                // Fetch relevant image
+                let imageData = try await UnsplashPhotoService.shared().fetchRandomPhoto(query: "Nature")
+                
+                // Build entry
+                let entry = MotivationalQuoteWidgetEntry(date: Date(), quote: QuoteModel.preview, unsplashPhoto: imageData.1, image: imageData.0)
+                
+                // Timeline with refresh after 1 hour
+                let nextRefresh = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
+                let timeline = Timeline(entries: [entry], policy: .after(nextRefresh))
+                
+                completion(timeline)
+            } catch {
+                // Fallback entry
+                let entry = MotivationalQuoteWidgetEntry(date: Date(), quote: QuoteModel.preview, unsplashPhoto: UnsplashPhoto(id: "", description: "", altDescription: "", urls: Urls(regular: ""), user: UnsplashUser(name: "", username: ""), createdAt: ""), image: UIImage(named: "backupGradi")!)
+                let timeline = Timeline(entries: [entry], policy: .atEnd)
+                completion(timeline)
+                
             }
-        .resume()
+        }
+        
     }
-
 }
-
 
 
 struct MotivationalQuoteWidgetTimelineEntryView : View {
@@ -75,11 +70,13 @@ struct MotivationalQuoteWidget: Widget {
         StaticConfiguration(kind: MotivationalQuoteWidget.kind, provider: MotivationalQuoteWidgetProvider()) { entry in
             if #available(iOS 17.0, *) {
                 MotivationalQuoteView(entry: entry)
-                    .containerBackground(Color.gray.opacity(0.2), for: .widget)
+                    .modelContainer(for: [QuoteModel.self])
+                    .containerBackground(.clear, for: .widget)
+                    
             } else {
                 MotivationalQuoteView(entry: entry)
-                    .padding()
-                    .background()
+                    .modelContainer(for: [QuoteModel.self])
+                    .containerBackground(.clear, for: .widget)
             }
         }
         .supportedFamilies([.systemMedium])
@@ -89,8 +86,11 @@ struct MotivationalQuoteWidget: Widget {
 }
 
 @available(iOS 17.0, *)
-#Preview(as: .systemSmall) {
+#Preview(as: .systemLarge) {
     MotivationalQuoteWidget()
 } timeline: {
-    MotivationalQuoteWidgetEntry(date: Date(), quote: Quote.preview, unsplashPhoto: UnsplashPhoto.preview, image: nil)
+    MotivationalQuoteWidgetEntry(date: Date(), quote: QuoteModel.preview, unsplashPhoto: UnsplashPhoto.preview, image: UIImage(named: "backupGradi"))
 }
+
+
+

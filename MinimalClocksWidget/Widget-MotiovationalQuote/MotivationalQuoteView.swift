@@ -6,47 +6,36 @@
 //
 
 import Kingfisher
+import SwiftData
 import SwiftUI
 import WidgetKit
 
 struct MotivationalQuoteView: View {
     var entry: MotivationalQuoteWidgetEntry
+    @Query var quotes: [QuoteModel]
+    @Environment(\.modelContext) private var context
+    
     var body: some View {
-        VStack(spacing: 6) {
-            ZStack {
-                if let imageURLString = entry.unsplashPhoto?.urls?.regular, !imageURLString.isEmpty {
-                    if let imageURL = URL(string: imageURLString) {
-                        AsyncImage(url: imageURL) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .overlay {
-                                    Color.clear
-                                        .background(.black.opacity(0.3))
-                                        .background(.thinMaterial.opacity(0.5).blendMode(.darken))
-                                }
-                            
-                        } placeholder: {
-                            ProgressView()
-                        }
-//                        .frame(width: 250, height: 250)
-                        .frame(maxWidth: .infinity)
-                        .frame(minHeight: 141, maxHeight: 170)
-                        .clipped()
-                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                    }
-                }
-                
-                Text(entry.quote.text)
-                    .font(.custom("Outfit", size: 22))
-                    .foregroundStyle(Color.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.horizontal)
-            }
-        }
-        .background {
+
+        ZStack {
+            Image(uiImage: entry.image ?? UIImage(named: "backupGradi")!)
+                .resizable()
+                .scaledToFill()
             
+            Text(entry.quote.text)
+                .font(.custom("Outfit", size: 22))
+                .foregroundStyle(Color.white)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 18)
+                .shadow(color: .black.opacity(0.5), radius: 2, x: 0, y: 1)
+                .frame(maxWidth: .infinity)
+                .frame(maxHeight: .infinity)
+                .background(Color.black.opacity(0.7))
+                .environment(\.colorScheme, .dark)
+                
         }
+        .frame(width: 380)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -54,9 +43,9 @@ struct MotivationalQuoteView: View {
 struct WidgetViewPreviews: PreviewProvider {
   static var previews: some View {
     VStack {
-        MotivationalQuoteView(entry: MotivationalQuoteWidgetEntry(date: Date(), quote: Quote.preview, unsplashPhoto: UnsplashPhoto.preview, image: nil))
+        MotivationalQuoteView(entry: MotivationalQuoteWidgetEntry(date: Date(), quote: QuoteModel.preview, unsplashPhoto: UnsplashPhoto.preview, image: nil))
             .containerBackground(.red.opacity(0), for: .widget)
     }
-    .previewContext(WidgetPreviewContext(family: .systemMedium))
+    .previewContext(WidgetPreviewContext(family: .systemLarge))
   }
 }

@@ -12,6 +12,7 @@ import FirebaseAuth
 import Firebase
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var context
     @Environment(\.scenePhase) private var scenePhase
     var columns = [
             GridItem(.flexible()), // First column
@@ -166,7 +167,7 @@ struct ContentView: View {
                         .frame(height: 160)
                         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                     
-                    MotivationalQuoteView(entry: MotivationalQuoteWidgetEntry.init(date: Date(), quote: Quote.preview, unsplashPhoto: UnsplashPhoto.preview, image: nil))
+                    MotivationalQuoteView(entry: MotivationalQuoteWidgetEntry.init(date: Date(), quote: QuoteModel.preview, unsplashPhoto: UnsplashPhoto.preview, image: nil))
                         
                 }
                 .padding(.horizontal)
@@ -177,6 +178,14 @@ struct ContentView: View {
                 // Basic random quote fetch
                 //let quote = try await QuoteService.shared.fetchRandomQuote()
 //                print("Random quote: \(quote.text) - \(quote.author)")
+                QuoteService.shared.context = context
+                let quotes = try QuoteService.shared.loadQuotesFromBundle()
+                try QuoteService.shared.saveQuotesToDisk(from: quotes, context: context)
+                let unsplash = try await UnsplashPhotoService.shared().fetchRandomPhoto(query: "Nature")
+                print("Here we go \(unsplash.0)", unsplash.1)
+//                let quote = try QuoteService.shared.fetchRandomUnshownQuote()
+//                print("quote is \(quote.text)")
+                
                 
             } catch {
                 print("Error: \(error)")
@@ -216,7 +225,7 @@ struct ContentView: View {
                             case .failure(let error):
                                 print("Error: \(error)")
                                 // Handle error and create a fallback timeline
-                                let entries = [MotivationalQuoteWidgetEntry(date: Date(), quote: Quote.preview, unsplashPhoto: nil, image: nil)]
+                                let entries = [MotivationalQuoteWidgetEntry(date: Date(), quote: QuoteModel.preview, unsplashPhoto: nil, image: nil)]
                             }
                         }
             if let user = Auth.auth().currentUser {

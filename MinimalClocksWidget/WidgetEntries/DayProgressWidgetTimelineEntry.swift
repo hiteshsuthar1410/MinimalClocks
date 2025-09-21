@@ -10,9 +10,9 @@ import WidgetKit
 
 struct MotivationalQuoteWidgetEntry: TimelineEntry {
     let date: Date
-    let quote: Quote
+    let quote: QuoteModel
     let unsplashPhoto: UnsplashPhoto?
-    let image: Image?
+    let image: UIImage?
 }
 
 struct DayProgressWidgetTimelineEntry: TimelineEntry, DayProgressViewProtocol {
