@@ -205,6 +205,52 @@ extension QuoteService {
     }
 }
 
+// MARK: - Refresh & Maintenance
+extension QuoteService {
+    /// Count quotes where isShown == false
+    func countUnshownQuotes(context: ModelContext) throws -> Int {
+        let fetchDescriptor = FetchDescriptor<QuoteModel>(
+            predicate: #Predicate { !$0.isShown }
+        )
+        let results = try context.fetch(fetchDescriptor)
+        return results.count
+    }
+    
+    /// Reset all quotes to unshown = false
+    func resetAllQuotesAsUnshown(context: ModelContext) throws {
+        let fetchDescriptor = FetchDescriptor<QuoteModel>()
+        let results = try context.fetch(fetchDescriptor)
+        guard !results.isEmpty else { return }
+        for quote in results {
+            quote.isShown = false
+        }
+        try context.save()
+    }
+    
+    /// If unshown quotes are at/below threshold, fetch from server and save.
+    /// If still none unshown (e.g., server only returns existing IDs), reset all to unshown.
+    @discardableResult
+    func refreshQuotesIfNeeded(context: ModelContext, threshold: Int = 5) async {
+        do {
+            let remaining = try countUnshownQuotes(context: context)
+            if remaining > threshold { return }
+            
+            // Fetch from Firestore and persist
+            let serverQuotes = try await fetch(Quote.self, from: "PositiveQuotesDataset")
+            try saveQuotesToDisk(from: serverQuotes, context: context)
+            
+            // Re-check remaining; if still empty, reset flags
+            let afterSaveRemaining = try countUnshownQuotes(context: context)
+            if afterSaveRemaining == 0 {
+                try resetAllQuotesAsUnshown(context: context)
+            }
+        } catch {
+            // Silently ignore in refresh path; callers can decide to log if needed
+            print("Quote refresh failed: \(error)")
+        }
+    }
+}
+
 enum QuoteServiceError: Error {
     case noUnshownQuotes
 }

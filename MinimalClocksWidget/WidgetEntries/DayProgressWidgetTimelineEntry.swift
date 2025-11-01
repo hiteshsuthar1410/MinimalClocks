@@ -13,6 +13,7 @@ struct MotivationalQuoteWidgetEntry: TimelineEntry {
     let quote: QuoteModel
     let unsplashPhoto: UnsplashPhoto?
     let image: UIImage?
+    var shouldUpdate = true
 }
 
 struct DayProgressWidgetTimelineEntry: TimelineEntry, DayProgressViewProtocol {
