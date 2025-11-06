@@ -12,32 +12,43 @@ import FirebaseAuth
 import Firebase
 
 struct ContentView: View {
+    
+    enum ContentViewSheet: Identifiable {
+        var id: Int { hashValue }
+        
+        case profile
+        case widgetInfo
+    }
+    
     @Environment(\.modelContext) private var context
     @Environment(\.scenePhase) private var scenePhase
-    var columns = [
-        GridItem(.flexible()), // First column
-        GridItem(.flexible())  // Second column
-    ]
-    
-    var column = [
-        GridItem(.flexible()), // First column
-    ]
+    @Environment(\.colorScheme) var colorScheme
     
     @State private var quotes = [Quote]()
     @State private var imageURL: URL?
     @State private var motivationalQuoteWidgetBGImage: UIImage?
     @State private var selectedWidgetInfo: MCWidgetInfo?
-    @State private var showingWidgetSheet = false
+    @State private var showSheet: ContentViewSheet? = nil
+    
+    private var columns = [
+        GridItem(.flexible()), // First column
+        GridItem(.flexible())  // Second column
+    ]
+    private var column = [
+        GridItem(.flexible()), // First column
+    ]
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 24) {
                     
-                    // Header Section
-                    headerSection
+                    // Date and Time Section
+                    dateAndTimeSection
+                    
                     
                     // Quick Actions Section
-//                    quickActionsSection
+                    //                    quickActionsSection
                     
                     // Productivity Section
                     productivitySection
@@ -50,114 +61,75 @@ struct ContentView: View {
             }
             .navigationTitle("Minimal Clocks")
             .navigationBarTitleDisplayMode(.large)
-//            .toolbar(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        // Profile action
-                        do {
-                            try Auth.auth().signOut()
-                        } catch {
-                            print("Error Signing out")
-                        }
+                        showSheet = .profile
                     } label: {
-                        Image("avatar_placeholder")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 32, height: 32)
-                            .clipShape(Circle())
+                        Group {
+                            if let photoURLString = UserManager.shared.getUserPhotoURL(), let photoURL = URL(string: photoURLString) {
+                                KFImage(photoURL)
+                                    .placeholder {
+                                        Image(systemName: "person.fill")
+                                            .resizable()
+                                            .scaledToFill()
+                                    }
+                                    .resizing(referenceSize: CGSize(width: 64, height: 64), mode: .aspectFill)
+                                    .cacheMemoryOnly()
+                                    .fade(duration: 0.25)
+                                    .onFailure { error in
+                                        print("Failed to load user profile image: \(error)")
+                                    }
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 32, height: 32)
+                                    .clipShape(Circle())
+                            } else {
+                                Image(systemName: "person.fill")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 32, height: 32)
+                                    .clipShape(Circle())
+                            }
+                        }
                     }
                 }
             }
         }
         .task {
+            authenticateUser()
+            do { motivationalQuoteWidgetBGImage = try await UnsplashPhotoService.shared().fetchRandomPhoto(query: "Nature").0 } catch {}
             do {
-                let quotes = try QuoteService.shared.loadQuotesFromBundle()
-                try QuoteService.shared.saveQuotesToDisk(from: quotes, context: context)
-                
+                try await QuoteService.shared.refreshQuotesIfNeeded(context: context, threshold: 10)
             } catch {
-                print("Error: \(error)")
+                print("Quote refresh failed: \(error)")
             }
-            
-            do {
-                motivationalQuoteWidgetBGImage = try await UnsplashPhotoService.shared().fetchRandomPhoto(query: "Nature").0
-            } catch {
+        }
+        
+        .sheet(item: $showSheet) { sheet in
+            switch sheet {
+            case .profile:
+                ProfileView()
+                    .presentationBackgroundInteraction(.disabled)
+                    .presentationBackground(.regularMaterial)
+                //                    .interactiveDismissDisabled()
                 
-            }
-            
-            QuoteService.shared.fetch(Quote.self, from: "PositiveQuotesDataset") { result in
                 
-                switch result {
-                case .success(let items):
-                    // Create your timeline entries with the items
-                    self.quotes = items
-                    print(items)
-                    
-                    
-                case .failure(let error):
-                    print("Error: \(error)")
-                    // Handle error and create a fallback timeline
-                    _ = [MotivationalQuoteWidgetEntry(date: Date(), quote: QuoteModel.preview, unsplashPhoto: nil, image: nil)]
+            case .widgetInfo:
+                if let widgetInfo = selectedWidgetInfo {
+                    WidgetExplanationSheetView(widgetInfo: widgetInfo)
+                } else {
+                    Text("Info not avail")
                 }
             }
-            
-            if let user = Auth.auth().currentUser {
-                user.getIDTokenResult { result, error in
-                    if error != nil {
-                        debugPrint(error as Any, terminator: "\n")
-                    }
-                    debugPrint(result as Any, terminator: "\n")
-                }
-            } else {
-                debugPrint("\ncurrent user is nil")
-            }
         }
-        .onChange(of: scenePhase) { oldPhase, newPhase in
-            // Removed WidgetCenter.shared.reloadAllTimelines() to prevent
-            // widgets from updating every time the app opens
-            switch newPhase {
-            case .background:
-                // Widgets will update according to their own timeline schedules
-                break
-            default:
-                break
-            }
-        }
-        .sheet(isPresented: $showingWidgetSheet) {
-            if let widgetInfo = selectedWidgetInfo {
-                WidgetExplanationSheetView(widgetInfo: widgetInfo)
-            } else {
-                Text("Info not avail")
-            }
-        }
-        .onChange(of: showingWidgetSheet) { oldValue, newValue in
-            if !newValue {
+        
+        .onChange(of: showSheet) { oldValue, newValue in
+            if newValue != nil {
                 // Reset selectedWidgetInfo when sheet is dismissed
                 selectedWidgetInfo = nil
             }
         }
-    }
-    
-    // MARK: - Header Section
-    private var headerSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text("Hello,")
-                    .font(.title2.weight(.medium))
-                    .foregroundColor(.secondary)
-                
-                Text("Rohan")
-                    .font(.title2.weight(.semibold))
-                    .foregroundColor(.primary)
-                
-                Spacer()
-            }
-            
-            Text("Track your day with beautiful widgets")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-        }
-        .padding(.vertical, 8)
     }
     
     // MARK: - Quick Actions Section
@@ -216,6 +188,20 @@ struct ContentView: View {
             }
         }
     }
+    // MARK: - Date and Time Section
+    private var dateAndTimeSection: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Date and Time")
+                .font(.headline.weight(.semibold))
+                .foregroundColor(.primary)
+                
+                WidgetButtonView {
+                    DateDayView()
+                } action: {
+                    showWidgetInfo(.dayDateMonth)
+                }
+        }
+    }
     
     // MARK: - Motivational Quote Section
     private var motivationalQuoteSection: some View {
@@ -241,209 +227,19 @@ struct ContentView: View {
         // Set the selected widget info and show sheet
         selectedWidgetInfo = MCWidgetInfo.info(for: widgetType)
         print("DEBUG: Setting selectedWidgetInfo for \(widgetType) - \(selectedWidgetInfo?.title ?? "nil")")
-        showingWidgetSheet = true
+        showSheet = .widgetInfo
     }
-}
-//@available(iOS 17.0, *)
-//#Preview {
-//    ContentView()
-//}
-
-
-struct PillButtonView: View {
-    @State private var isSelected = false
     
-    var body: some View {
-        Button(action: {
-            isSelected.toggle()
-        }) {
-            Text("Quick Action")
-                .font(.subheadline.weight(.medium))
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(isSelected ? Color.accentColor : Color(.systemGray6))
-                .foregroundColor(isSelected ? .white : .primary)
-                .clipShape(Capsule())
-                .overlay(
-                    Capsule()
-                        .stroke(Color(.systemGray4), lineWidth: 0.5)
-                )
-        }
-        .buttonStyle(.plain)
-        .animation(.easeInOut(duration: 0.2), value: isSelected)
-    }
-}
-
-struct PillButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        PillButtonView()
-            .previewLayout(.sizeThatFits)
-            .padding()
-    }
-}
-
-// MARK: - Widget Explanation Sheet
-struct WidgetExplanationSheetView: View {
-    let widgetInfo: MCWidgetInfo
-    @Environment(\.dismiss) private var dismiss
-    @State private var showingAddGuideSheet = false
-    
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 24) {
-                    // Header
-                    VStack(spacing: 16) {
-                        ZStack {
-                            Circle()
-                                .fill(widgetInfo.color.opacity(0.15))
-                                .frame(width: 80, height: 80)
-                            
-                            Image(systemName: widgetInfo.icon)
-                                .font(.system(size: 32, weight: .medium))
-                                .foregroundColor(widgetInfo.color)
-                        }
-                        
-                        Text(widgetInfo.title)
-                            .font(.largeTitle.weight(.bold))
-                            .multilineTextAlignment(.center)
-                    }
-                    
-                    // Description
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("About This Widget")
-                            .font(.headline.weight(.semibold))
-                        
-                        Text(widgetInfo.description)
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    // How It Helps
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("How It Helps")
-                            .font(.headline.weight(.semibold))
-                        
-                        ForEach(widgetInfo.benefits, id: \.self) { benefit in
-                            HStack(spacing: 12) {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.green)
-                                Text(benefit)
-                                Spacer()
-                            }
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 12)
-                            .background(Color(.systemGray6))
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+    private func authenticateUser() {
+        if let user = Auth.auth().currentUser {
+            user.getIDTokenResult { result, error in
+                if error != nil {
+                    debugPrint(error as Any, terminator: "\n")
                 }
-                .padding(.horizontal, 20)
-                .padding(.bottom, 40)
+                debugPrint(result as Any, terminator: "\n")
             }
-            .sheet(isPresented: $showingAddGuideSheet) {
-                WidgetAddGuideView()
-            }
-            .navigationTitle("Widget Details")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") { dismiss() }
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            showingAddGuideSheet = true
-                        } label: {
-                            Image(systemName: "info.circle")
-                        }
-                    }
-                }
-            
-        }
-    }
-}
-
-// MARK: - Widget Add Guide View
-struct WidgetAddGuideView: View {
-    @Environment(\.dismiss) private var dismiss
-    
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
-                    Text("Add Widgets to Your Home Screen or Today View")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .padding(.top)
-                    
-                    Group {
-                        HStack(alignment: .top, spacing: 12) {
-                            Image(systemName: "hand.tap.fill")
-                                .font(.title2)
-                                .foregroundColor(.accentColor)
-                            Text("**Touch and hold** an empty area on your Home Screen or Today View until the apps jiggle.")
-                        }
-                        
-                        HStack(alignment: .top, spacing: 12) {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.title2)
-                                .foregroundColor(.accentColor)
-                            Text("Tap the **Edit** button in the upper-left corner.")
-                        }
-                        
-                        if #available(iOS 26, *) {
-                            HStack(alignment: .top, spacing: 12) {
-                                Image(systemName: "widget.large.badge.plus")
-                                    .font(.title2)
-                                    .foregroundColor(.accentColor)
-                                Text("Tap **Add Widget**.")
-                            }
-                        }
-                        
-                        HStack(alignment: .top, spacing: 12) {
-                            Image(systemName: "magnifyingglass")
-                                .font(.title2)
-                                .foregroundColor(.accentColor)
-                            Text("Use the **Search bar** to find the Minimal Clocks widgets.")
-                        }
-                        
-                        HStack(alignment: .top, spacing: 12) {
-                            Image(systemName: "rectangle.3.offgrid.fill")
-                                .font(.title2)
-                                .foregroundColor(.accentColor)
-                            Text("Select your preferred widget size and tap **Add Widget**.")
-                        }
-                        
-                        HStack(alignment: .top, spacing: 12) {
-                            Image(systemName: "arrow.up.left.and.arrow.down.right")
-                                .font(.title2)
-                                .foregroundColor(.accentColor)
-                            Text("Drag the widget to your desired location, then tap **Done** or press the Home button.")
-                        }
-                    }
-                    .font(.body)
-                    .foregroundColor(.primary)
-                    
-                    Divider()
-                    
-                    Text("Enjoy your personalized widgets that help you stay focused, motivated, and productive throughout your day!")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.bottom, 20)
-                }
-                .padding(.horizontal, 20)
-            }
-            .navigationTitle("How to Add Widgets")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") { dismiss() }
-                }
-            }
+        } else {
+            debugPrint("\ncurrent user is nil")
         }
     }
 }

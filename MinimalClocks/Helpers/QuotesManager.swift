@@ -12,7 +12,13 @@ import SwiftData
 final class QuoteService: NetworkService {
     // Singleton instance
     static let shared = QuoteService()
-    private let db = Firestore.firestore()
+    private let db: Firestore = {
+        let settings = FirestoreSettings()
+        settings.cacheSettings = PersistentCacheSettings() // ✅ Enables offline persistence
+        let firestore = Firestore.firestore()
+        firestore.settings = settings
+        return firestore
+    }()
     var context: ModelContext!
     
     private init() {}
@@ -160,15 +166,6 @@ extension QuoteService {
     
     // MARK: - SwiftData Integration
 
-    /// Decode quotes from bundled quotes.json file
-    func loadQuotesFromBundle() throws -> [Quote] {
-        guard let url = Bundle.main.url(forResource: "quotes", withExtension: "json") else {
-            throw NSError(domain: "QuoteService", code: 1, userInfo: [NSLocalizedDescriptionKey: "quotes.json not found in bundle"])
-        }
-        let data = try Data(contentsOf: url)
-        return try JSONDecoder().decode([Quote].self, from: data)
-    }
-
     /// Parse decoded Quote DTOs into QuoteModel and save to SwiftData
     func saveQuotesToDisk(from quotes: [Quote], context: ModelContext) throws {
         for dto in quotes {
@@ -220,7 +217,9 @@ extension QuoteService {
     func resetAllQuotesAsUnshown(context: ModelContext) throws {
         let fetchDescriptor = FetchDescriptor<QuoteModel>()
         let results = try context.fetch(fetchDescriptor)
-        guard !results.isEmpty else { return }
+        guard !results.isEmpty else {
+            throw QuoteServiceError.emptyData
+        }
         for quote in results {
             quote.isShown = false
         }
@@ -229,8 +228,8 @@ extension QuoteService {
     
     /// If unshown quotes are at/below threshold, fetch from server and save.
     /// If still none unshown (e.g., server only returns existing IDs), reset all to unshown.
-    @discardableResult
-    func refreshQuotesIfNeeded(context: ModelContext, threshold: Int = 5) async {
+    @MainActor
+    func refreshQuotesIfNeeded(context: ModelContext, threshold: Int = 5) async throws {
         do {
             let remaining = try countUnshownQuotes(context: context)
             if remaining > threshold { return }
@@ -245,7 +244,6 @@ extension QuoteService {
                 try resetAllQuotesAsUnshown(context: context)
             }
         } catch {
-            // Silently ignore in refresh path; callers can decide to log if needed
             print("Quote refresh failed: \(error)")
         }
     }
@@ -253,4 +251,5 @@ extension QuoteService {
 
 enum QuoteServiceError: Error {
     case noUnshownQuotes
+    case emptyData
 }

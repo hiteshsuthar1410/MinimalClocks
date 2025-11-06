@@ -40,7 +40,8 @@ struct LoginView: View {
             }
             let accessToken = user.accessToken
             let credentials = GoogleAuthProvider.credential(withIDToken: idToken.tokenString, accessToken: accessToken.tokenString)
-            _ = try await Auth.auth().signIn(with: credentials)
+            let authDataResult = try await Auth.auth().signIn(with: credentials)
+            let authUser = authDataResult.user
             return true
             
         } catch {

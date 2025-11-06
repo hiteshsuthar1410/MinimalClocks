@@ -48,11 +48,15 @@ class AuthenticationViewModel: ObservableObject {
                 self?.isLoading = false
                 self?.errorMessage = nil // Clear any previous error
                 
-                // You can add logic here to fetch more data, like display name, etc.
+                // Save or clear user data based on auth state
                 if let user = user {
                     print("User is signed in with UID: \(user.uid)")
+                    // Save user data when logged in
+                    UserManager.shared.saveUser(from: user)
                 } else {
                     print("User is signed out.")
+                    // Clear user data when signed out
+                    UserManager.shared.clearUser()
                 }
             }
         }
@@ -104,6 +108,8 @@ class AuthenticationViewModel: ObservableObject {
         
         do {
             try Auth.auth().signOut()
+            // Clear user data on sign out
+            UserManager.shared.clearUser()
             // The authStateDidChangeListener will handle updating the state properties.
             print("User signed out successfully.")
         } catch {

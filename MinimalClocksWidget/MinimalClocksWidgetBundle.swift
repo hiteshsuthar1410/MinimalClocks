@@ -15,5 +15,6 @@ struct MinimalClocksWidgetBundle: WidgetBundle {
         DayProgressCircleWidget()
         DayProgressBarWidget()
         MotivationalQuoteWidget()
+        DateTimePickerWidget()
     }
 }

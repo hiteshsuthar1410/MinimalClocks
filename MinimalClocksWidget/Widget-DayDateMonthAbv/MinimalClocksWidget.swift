@@ -37,7 +37,7 @@ struct MinimalClocksWidgetEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
-        DateView()
+        DateView(date: entry.date)
     }
 }
 
@@ -55,7 +55,7 @@ struct MinimalClocksWidget: Widget {
                     .background()
             }
         }
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium])
         .configurationDisplayName("Day Date Month")
         .description("Day Date Month in abbrivated style.")
     }

@@ -25,6 +25,8 @@ struct MCWidgetInfo: Identifiable {
         case dayProgressBarRemaining
         case motivationalQuote
         case dayDateMonth
+        case dateTimePicker
+
     }
 }
 
@@ -97,18 +99,17 @@ extension MCWidgetInfo {
         ),
         MCWidgetInfo(
             title: "Day Date Month",
-            description: "Keep track of the current date with a clean, minimalist display showing day, date, and month.",
+            description: "A clean, minimalist date display showing the weekday, day number, and abbreviated month in an elegant compact format.",
             benefits: [
-                "Stay oriented with the current date",
-                "Quickly reference day and month",
-                "Maintain daily awareness",
-                "Support your daily planning"
+                "Stay oriented with the current date at a glance",
+                "Quickly reference day, date, and month",
+                "Minimalist design that fits any home screen",
+                "Updates automatically once per day at midnight"
             ],
             icon: "calendar",
             color: .blue,
             widgetType: .dayDateMonth
-        )
-    ]
+        )]
     
     static func info(for widgetType: WidgetType) -> MCWidgetInfo? {
         return allWidgets.first { $0.widgetType == widgetType }

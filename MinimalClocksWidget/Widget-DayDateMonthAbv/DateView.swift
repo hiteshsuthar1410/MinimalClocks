@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct DateView: View {
-    private let currentDate = Date()
+    let date: Date
+    
+    init(date: Date = Date()) {
+        self.date = date
+    }
     
     var body: some View {
         VStack(spacing: 0){
             
-                Text(currentDate, format: .dateTime.weekday(.wide))
+                Text(date, format: .dateTime.weekday(.wide))
                     .font(.custom("Outfit", size: 18))
                     .fontWeight(.medium)
 //                    .textCase(.lowercase)
@@ -23,7 +27,7 @@ struct DateView: View {
                     .offset(x: 6, y: 28)
                 
             
-            Text(currentDate, format: .dateTime.day())
+            Text(date, format: .dateTime.day())
                 .font(.custom("Outfit", size: 66))
                 .fontWeight(.semibold)
                 .frame(maxHeight: .infinity)
@@ -31,7 +35,7 @@ struct DateView: View {
                 .offset(x: 6, y: 12)
 //                .border(Color.black)
             
-            Text(currentDate, format: .dateTime.month(.abbreviated))
+            Text(date, format: .dateTime.month(.abbreviated))
                 .font(.custom("Outfit", size: 66))
 //                .textCase(.uppercase)
                 .fontWeight(.semibold)
