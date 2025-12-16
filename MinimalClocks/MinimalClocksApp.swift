@@ -31,6 +31,7 @@ struct MinimalClocksApp: App {
             
         }
         .modelContainer(for: QuoteModel.self)
+//        .modelContainer(for: GoogleWeatherApiResponse.self)
     }
     
     init() {

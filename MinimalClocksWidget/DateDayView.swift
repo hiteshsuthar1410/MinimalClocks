@@ -36,7 +36,7 @@ struct DateDayView: View {
     var dateView: some View {
         // Day number - bold
         Text("\(day)") // e.g., "1"
-            .font(Font.system(size: 90, weight: .bold, design: .rounded))
+            .font(Font.system(size: 80, weight: .bold, design: .rounded))
             .foregroundStyle(colorScheme == .light ? lightBackground : darkBackground)
             .fontWeight(.bold)
     }
@@ -44,14 +44,14 @@ struct DateDayView: View {
     var weekDayView: some View {
         // Time display
         Text(weekday) // e.g., "Sunday"
-            .font(Font.system(size: family == .systemSmall ? 20 : 50, weight: .semibold, design: .rounded))
+            .font(Font.system(size: family == .systemSmall ? 24 : 40, weight: .semibold, design: .rounded))
             .foregroundStyle(colorScheme == .light ? darkBackground : lightBackground)
             .fontWeight(family == .systemSmall ? .medium : .light)
     }
     
     var monthView: some View {
         Text(month) // e.g., "November"
-            .font(Font.system(size: family == .systemSmall ? 20 : 20, weight: .ultraLight, design: .rounded))
+            .font(Font.system(size: family == .systemSmall ? 12 : 20, weight: .ultraLight, design: .rounded))
             .foregroundStyle(colorScheme == .light ? darkBackground : lightBackground)
             .fontWeight(family == .systemSmall ? .light : .medium)
     }
@@ -64,8 +64,8 @@ struct DateDayView: View {
                 ZStack {
                     colorScheme == .light ? lightBackground : darkBackground
                     VStack(spacing: 0) {
-                        weekDayView
                         monthView
+                        weekDayView
                     }
                 }
             }
@@ -77,7 +77,7 @@ struct DateDayView: View {
             HStack(spacing: 8) {
                 // Left Section - Date
                 dateView
-                    .frame(maxWidth: 100)
+                    .frame(maxWidth: 120)
                     .frame(maxHeight: .infinity)
                     .background { colorScheme == .light ? darkBackground : lightBackground }
                 
@@ -85,6 +85,7 @@ struct DateDayView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     weekDayView
                     monthView
+                        .offset(y: -3)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }

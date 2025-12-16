@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WidgetExplanationSheet: View {
-    let widgetInfo: WidgetInfo
+    let widgetInfo: MCWidgetInfo
     @Environment(\.dismiss) private var dismiss
     @State private var isAnimating = false
     
@@ -102,28 +102,28 @@ struct WidgetExplanationSheet: View {
                 .font(.headline.weight(.semibold))
                 .foregroundColor(.primary)
             
-            LazyVStack(spacing: 12) {
-                ForEach(Array(widgetInfo.features.enumerated()), id: \.offset) { index, feature in
-                    HStack(spacing: 12) {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 16, weight: .medium))
-                            .foregroundColor(.green)
-                        
-                        Text(feature)
-                            .font(.body)
-                            .foregroundColor(.primary)
-                        
-                        Spacer()
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
-                    .background(Color(.systemGray6))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .scaleEffect(isAnimating ? 1.0 : 0.95)
-                    .opacity(isAnimating ? 1.0 : 0.0)
-                    .animation(.easeOut(duration: 0.4).delay(Double(index) * 0.1), value: isAnimating)
-                }
-            }
+//            LazyVStack(spacing: 12) {
+//                ForEach(Array(widgetInfo.features.enumerated()), id: \.offset) { index, feature in
+//                    HStack(spacing: 12) {
+//                        Image(systemName: "checkmark.circle.fill")
+//                            .font(.system(size: 16, weight: .medium))
+//                            .foregroundColor(.green)
+//                        
+//                        Text(feature)
+//                            .font(.body)
+//                            .foregroundColor(.primary)
+//                        
+//                        Spacer()
+//                    }
+//                    .padding(.horizontal, 16)
+//                    .padding(.vertical, 12)
+//                    .background(Color(.systemGray6))
+//                    .clipShape(RoundedRectangle(cornerRadius: 12))
+//                    .scaleEffect(isAnimating ? 1.0 : 0.95)
+//                    .opacity(isAnimating ? 1.0 : 0.0)
+////                    .animation(.easeOut(duration: 0.4).delay(Double(index) * 0.1), value: isAnimating)
+//                }
+//            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -263,5 +263,5 @@ struct WidgetExplanationSheet: View {
 
 // MARK: - Preview
 #Preview {
-    WidgetExplanationSheet(widgetInfo: WidgetInfo.allWidgets[0])
+    WidgetExplanationSheet(widgetInfo: MCWidgetInfo.allWidgets[0])
 }

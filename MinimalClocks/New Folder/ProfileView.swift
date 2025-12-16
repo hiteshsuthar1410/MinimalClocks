@@ -26,26 +26,7 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.clear
-                    .backgroundStyle(.background)
-                    .ignoresSafeArea()
-                
-                // 👇 Radial gradient layer
-                GeometryReader { geo in
-                    RadialGradient(
-                        colors: [
-//                            (colorScheme == .light ? Color(#colorLiteral(red: 0.7725490196, green: 0.7294117647, blue: 1, alpha: 1)) : Color(#colorLiteral(red: 0.031, green: 0.125, blue: 0.243, alpha: 1))),
-                            (colorScheme == .light ? Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) : Color(#colorLiteral(red: 0.141, green: 0.216, blue: 0.282, alpha: 1))),
-                            (colorScheme == .light ? Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) : Color(#colorLiteral(red: 0.333, green: 0.486, blue: 0.576, alpha: 1))),
-                            (colorScheme == .light ? Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) : Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
-                        ],
-                        center: .top,
-                        startRadius: 0,
-                        endRadius: geo.size.height * 0.3) // controls how far fade extends
-                    .ignoresSafeArea(edges: .top)
-                }
-                
-                // 👇 Your screen content
+                Color(.systemBackground) // Adapts to light/dark mode
                 GeometryReader { geo in
                     VStack(spacing: 0) {
                         HStack {
@@ -60,7 +41,8 @@ struct ProfileView: View {
                                     .frame(width: 44, height: 44)
                                 
                             })
-                            .padding(.vertical)
+                            .padding(.top, 8)
+                            .offset(x: 8)
                             
                         }
                         
@@ -113,17 +95,14 @@ struct ProfileView: View {
                                         }
                                     }
                                     Spacer()
-                                    
                                 }
                                 .padding()
-                                .background(.thinMaterial.opacity(colorScheme == .light ? 0.8 : 0.2))
+                                .background(.thinMaterial.opacity(0.8))
                                 .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-                                .listRowBackground(Color.clear)
                                 .listRowInsets(EdgeInsets())
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                
                             }
-                            
+
                             Section(header: Text("Feedback")) {
                                 Button("Rate the app", systemImage: "star.fill") {
                                     requestReview()
@@ -169,7 +148,7 @@ struct ProfileView: View {
                                         .stroke((colorScheme == .light ? Color.white.opacity(0.3) : Color.black.opacity(0.3)), lineWidth: 1))
                         }
                         Spacer()
-                            .frame(height: 10)
+                            .frame(height: 40)
                     }
                     .padding(.horizontal)
                 }

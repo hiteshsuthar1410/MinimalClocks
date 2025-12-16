@@ -23,6 +23,7 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>ProgressTypeSelectionIntent</string>
+		<string>WeatherAQIIntentIntent</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>

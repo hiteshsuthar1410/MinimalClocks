@@ -18,7 +18,7 @@ struct MCWidgetInfo: Identifiable {
     let color: Color
     let widgetType: WidgetType
     
-    enum WidgetType {
+    enum WidgetType: CaseIterable {
         case dayProgressCircleCompleted
         case dayProgressCircleRemaining
         case dayProgressBarCompleted
@@ -26,7 +26,8 @@ struct MCWidgetInfo: Identifiable {
         case motivationalQuote
         case dayDateMonth
         case dateTimePicker
-
+        case weatherTemperature
+        case weatherAQI
     }
 }
 
@@ -109,6 +110,32 @@ extension MCWidgetInfo {
             icon: "calendar",
             color: .blue,
             widgetType: .dayDateMonth
+        ),
+        MCWidgetInfo(
+            title: "Weather Temperature",
+            description: "Stay informed about current weather conditions with real-time temperature, location, and weather status displayed in a beautiful minimalist design.",
+            benefits: [
+                "Monitor current temperature at a glance",
+                "See weather conditions with intuitive icons",
+                "Get location-based weather updates",
+                "Plan your day with accurate weather information"
+            ],
+            icon: "thermometer.sun.fill",
+            color: .orange,
+            widgetType: .weatherTemperature
+        ),
+        MCWidgetInfo(
+            title: "Air Quality Index (AQI)",
+            description: "Track air quality in your area with real-time AQI readings, color-coded indicators, and health recommendations to help you make informed decisions about outdoor activities.",
+            benefits: [
+                "Monitor air quality for your health",
+                "Get color-coded AQI indicators",
+                "See health recommendations based on AQI levels",
+                "Make informed decisions about outdoor activities"
+            ],
+            icon: "aqi.medium",
+            color: .green,
+            widgetType: .weatherAQI
         )]
     
     static func info(for widgetType: WidgetType) -> MCWidgetInfo? {

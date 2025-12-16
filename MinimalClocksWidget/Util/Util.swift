@@ -5,7 +5,10 @@
 //  Created by NovoTrax Dev1 on 12/01/25.
 //
 
+import CoreLocation
 import WidgetKit
+import UIKit
+
 struct Util {
     
     private init() {}
@@ -60,6 +63,53 @@ struct Util {
             
         default:
             return .completed
+        }
+    }
+    
+    static func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
+        guard let httpResponse = output.response as? HTTPURLResponse else {
+            throw URLError(.badServerResponse)
+        }
+        
+        guard (200...299).contains(httpResponse.statusCode) else {
+            if let errorString = String(data: output.data, encoding: .utf8) {
+                print("❌ Server Error Response: \(errorString)")
+            }
+            throw URLError(.badServerResponse)
+        }
+        return output.data
+    }
+    
+    static func getPlacemarkFrom(location: CLLocation?) async throws -> CLPlacemark {
+        // Use the last reported location.
+        guard let location else {
+            throw WidgetDataError.locationNotFound
+        }
+        
+        let geocoder = CLGeocoder()
+        
+        do {
+            let placemarks = try await geocoder.reverseGeocodeLocation(location)
+            guard let placemark = placemarks.first else {
+                throw WidgetDataError.placemarkNotFound
+            }
+            return placemark
+        } catch {
+            throw WidgetDataError.placemarkNotFound
+        }
+    }
+    
+    static func loadImage(from urlString: String) async -> UIImage? {
+        guard let url = URL(string: urlString) else {
+            return nil
+        }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return UIImage(data: data)
+        } catch {
+            print("❌ Failed to load image from \(urlString): \(error)")
+            return nil
         }
     }
 }
