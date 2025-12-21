@@ -6,7 +6,6 @@
 //
 
 import Combine
-import CoreLocation
 import Firebase
 import FirebaseAuth
 import Kingfisher
@@ -75,48 +74,20 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showSheet = .profile
-                    } label: {
-                        Group {
-                            if let photoURLString = UserManager.shared.getUserPhotoURL(), let photoURL = URL(string: photoURLString) {
-                                KFImage(photoURL)
-                                    .placeholder {
-                                        Image(systemName: "person.fill")
-                                            .resizable()
-                                            .scaledToFill()
-                                    }
-                                    .resizing(referenceSize: CGSize(width: 64, height: 64), mode: .aspectFill)
-                                    .cacheMemoryOnly()
-                                    .fade(duration: 0.25)
-                                    .onFailure { error in
-                                        print("Failed to load user profile image: \(error)")
-                                    }
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 32, height: 32)
-                                    .clipShape(Circle())
-                            } else {
-                                Image(systemName: "person.fill")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 32, height: 32)
-                                    .clipShape(Circle())
-                            }
-                        }
-                    }
+                    profileToolbarButton
                 }
             }
         }
         .task {
             authenticateUser()
-            do { motivationalQuoteWidgetBGImage = try await UnsplashPhotoService.shared().fetchRandomPhoto(query: "Nature").0 } catch {}
+            locationHandler.fetchLocation()
+            do {
+                motivationalQuoteWidgetBGImage = try await UnsplashPhotoService.shared().fetchRandomPhoto(query: "Nature").0 } catch {}
             do {
                 try await QuoteService.shared.refreshQuotesIfNeeded(context: context, threshold: 10)
             } catch {
                 print("Quote refresh failed: \(error)")
             }
-            locationHandler.fetchLocation()
             
             // Load weather and AQI data
             await loadWeatherAndAQIData()
@@ -149,7 +120,7 @@ struct ContentView: View {
               let locality = locationData.locality else {
             return
         }
-
+        
         let refresh = Calendar.current.date(byAdding: .minute, value: 60, to: Date())!
         let failedEntry = [
             WeatherAQIEntry(date: .now,
@@ -163,7 +134,7 @@ struct ContentView: View {
                             configuration: WeatherAQIIntentIntent())
         ]
         let failedTimeline = Timeline(entries: failedEntry, policy: .after(refresh))
-
+        
         Task {
             do {
                 // Fetch hourly weather
@@ -171,12 +142,12 @@ struct ContentView: View {
                     completion(failedTimeline)
                     return
                 }
-
+                
                 guard let hoursForecast = response.forecastHours else {
                     completion(failedTimeline)
                     return
                 }
-
+                
                 // Build entries safely with image preloading
                 let entries: [WeatherAQIEntry] = try await withThrowingTaskGroup(of: WeatherAQIEntry.self) { group in
                     var entryArray: [WeatherAQIEntry] = []
@@ -213,23 +184,27 @@ struct ContentView: View {
                     
                     return entryArray.sorted { $0.date < $1.date }
                 }
-
+                
                 // Ensure at least one entry
                 guard !entries.isEmpty else {
                     completion(failedTimeline)
                     return
                 }
-
+                
                 // Success timeline
                 let timeline = Timeline(entries: entries, policy: .after(refresh))
                 completion(timeline)
-
+                
             } catch {
                 print("❌ Timeline building failed: \(error)")
                 completion(failedTimeline)
             }
         }
     }
+    
+}
+
+extension ContentView {
     
     // MARK: - Quick Actions Section
     private var quickActionsSection: some View {
@@ -379,7 +354,43 @@ struct ContentView: View {
         }
     }
     
-    // MARK: - Helper Functions
+    // MARK: - Profile Button
+    @ViewBuilder
+    private var profileAvatar: some View {
+        if let photoURLString = UserManager.shared.getUserPhotoURL(), let photoURL = URL(string: photoURLString) {
+            KFImage(photoURL)
+                .placeholder {
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .scaledToFill()
+                }
+                .resizing(referenceSize: CGSize(width: 64, height: 64), mode: .aspectFill)
+                .cacheMemoryOnly()
+                .fade(duration: 0.25)
+                .onFailure { error in
+                    print("Failed to load user profile image: \(error)")
+                }
+                .resizable()
+                .scaledToFill()
+                .frame(width: 32, height: 32)
+                .clipShape(Circle())
+        } else {
+            Image(systemName: "person.fill")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 32, height: 32)
+                .clipShape(Circle())
+        }
+    }
+
+    private var profileToolbarButton: some View {
+        Button {
+            showSheet = .profile
+        } label: {
+            profileAvatar
+        }
+    }
+
     private func showWidgetInfo(_ widgetType: MCWidgetInfo.WidgetType) {
         // Add haptic feedback
         let impactFeedback = UIImpactFeedbackGenerator(style: .light)
@@ -399,41 +410,6 @@ struct ContentView: View {
             debugPrint("\ncurrent user is nil")
         }
     }
-}
-
-class LocationHandler: NSObject, CLLocationManagerDelegate {
-    let locationManager = CLLocationManager()
-    
-    func fetchLocation() {
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Location error:", error.localizedDescription)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
-        print(state)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            var appGroupStorage = AppGroupStorage()
-            Task {
-                do {
-                    let placemark = try await Util.getPlacemarkFrom(location: location)
-                    if let locality = placemark.locality {
-                        appGroupStorage.saveLocationToSharedDefaults(location: location, city: locality)
-                    }
-                } catch {
-                    return
-                }
-            }
-        }
-    }
-
 }
 
 extension ContentView {
@@ -562,4 +538,3 @@ extension ContentView {
         )
     }
 }
-
