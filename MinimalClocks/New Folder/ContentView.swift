@@ -15,14 +15,6 @@ import SwiftUI
 import WidgetKit
 
 struct ContentView: View {
-    let repo = WeatherAQIRepository()
-    enum ContentViewSheet: Identifiable {
-        var id: Int { hashValue }
-        
-        case profile
-        case widgetInfo
-    }
-    
     @Environment(\.modelContext) private var context
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.colorScheme) var colorScheme
@@ -32,10 +24,25 @@ struct ContentView: View {
     @State private var motivationalQuoteWidgetBGImage: UIImage?
     @State private var widgetPreviewEntry: WeatherAQIEntry?
     @State private var aqiPreviewEntry: WeatherAQIEntry?
-    @State private var selectedWidgetInfo: MCWidgetInfo?
     @State private var showSheet: ContentViewSheet? = nil
     
-    let locationHandler = LocationHandler()
+    enum ContentViewSheet: Identifiable {
+        
+        case profile
+        case widgetInfo(widgetType: MCWidgetInfo.WidgetType)
+        
+        var id: String {
+            switch self {
+            case .profile:
+                return "profile"
+            case .widgetInfo(let widgetType):
+                return "widgetInfo-\(widgetType)"
+            }
+        }
+    }
+    
+    private let repo = WeatherAQIRepository()
+    private let locationHandler = LocationHandler()
     private var columns = [
         GridItem(.flexible()), // First column
         GridItem(.flexible())  // Second column
@@ -120,7 +127,6 @@ struct ContentView: View {
                 await loadWeatherAndAQIData()
             }
         }
-        
         .sheet(item: $showSheet) { sheet in
             switch sheet {
             case .profile:
@@ -130,12 +136,8 @@ struct ContentView: View {
                 //                    .interactiveDismissDisabled()
                 
                 
-            case .widgetInfo:
-                if let widgetInfo = selectedWidgetInfo {
-                    WidgetExplanationSheetView(widgetInfo: widgetInfo)
-                } else {
-                    Text("Info not avail")
-                }
+            case .widgetInfo(let widgetInfo):
+                WidgetExplanationSheetView(widgetInfo: MCWidgetInfo.info(for: widgetInfo)!)
             }
         }
     }
@@ -382,11 +384,7 @@ struct ContentView: View {
         // Add haptic feedback
         let impactFeedback = UIImpactFeedbackGenerator(style: .light)
         impactFeedback.impactOccurred()
-        
-        // Set the selected widget info and show sheet
-        selectedWidgetInfo = MCWidgetInfo.info(for: widgetType)
-        print("DEBUG: Setting selectedWidgetInfo for \(widgetType) - \(selectedWidgetInfo?.title ?? "nil")")
-        showSheet = .widgetInfo
+        showSheet = .widgetInfo(widgetType: widgetType)
     }
     
     private func authenticateUser() {
@@ -564,3 +562,4 @@ extension ContentView {
         )
     }
 }
+

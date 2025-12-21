@@ -13,7 +13,8 @@ import SwiftUI
 struct MinimalClocksApp: App {
     @StateObject var authViewModel = AuthenticationViewModel()
     var body: some Scene {
-        WindowGroup {Group {
+        WindowGroup {
+            Group {
             if authViewModel.isLoading {
                 // Show a loading screen/spinner while Firebase checks the state
                 VStack {
