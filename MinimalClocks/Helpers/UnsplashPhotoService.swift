@@ -2,13 +2,14 @@
 //  UnsplashPhotoService.swift
 //  MinimalClocks
 //
-//  Created by NovoTrax Dev1 on 19/01/25.
+//  Created by Hitesh Suthar on 19/01/25.
 //
 
 import Foundation
 import UIKit.UIImage
 
-class UnsplashPhotoService: ObservableObject {
+@Observable
+class UnsplashPhotoService {
     
     private static var service: UnsplashPhotoService?
     

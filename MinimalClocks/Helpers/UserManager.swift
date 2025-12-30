@@ -2,7 +2,7 @@
 //  UserManager.swift
 //  MinimalClocks
 //
-//  Created by Auto on 05/02/25.
+//  Created by Hitesh Suthar on 05/02/25.
 //
 
 import Foundation

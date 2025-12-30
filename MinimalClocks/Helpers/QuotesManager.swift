@@ -2,7 +2,7 @@
 //  File.swift
 //  MinimalClocks
 //
-//  Created by NovoTrax Dev1 on 18/01/25.
+//  Created by Hitesh Suthar on 18/01/25.
 //
 
 import Firebase

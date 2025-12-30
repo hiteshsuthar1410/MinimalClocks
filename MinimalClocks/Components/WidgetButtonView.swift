@@ -2,7 +2,7 @@
 //  WidgetButtonView.swift
 //  MinimalClocks
 //
-//  Created by NovoTrax Dev1 on 21/09/25.
+//  Created by Hitesh Suthar on 21/09/25.
 //
 
 import SwiftUI

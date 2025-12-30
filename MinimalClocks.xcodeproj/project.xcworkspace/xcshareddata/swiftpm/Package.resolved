@@ -1,5 +1,5 @@
 {
-  "originHash" : "3b7b9c646911db3274c6d08c01670b94637acd530bc17207c6d962358c44ddab",
+  "originHash" : "6a9bcdb768727ffa8e63041166fe071007ebb87c1abd393b59aca182fcba10d5",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -125,6 +125,15 @@
       "state" : {
         "revision" : "a0bc79961d7be727d258d33d5a6b2f1023270ba1",
         "version" : "1.22.5"
+      }
+    },
+    {
+      "identity" : "meshingkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rryam/MeshingKit",
+      "state" : {
+        "revision" : "49513f42c1ed6505be068ab8dbf56ce16d6c3f2a",
+        "version" : "2.4.0"
       }
     },
     {

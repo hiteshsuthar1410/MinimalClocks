@@ -2,7 +2,7 @@
 //  DateTimePickerView.swift
 //  MinimalClocks
 //
-//  Created by Assistant
+//  Created by Hitesh Suthar
 //
 
 import SwiftUI

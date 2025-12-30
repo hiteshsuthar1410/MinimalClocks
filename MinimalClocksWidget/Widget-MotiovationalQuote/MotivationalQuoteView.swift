@@ -2,7 +2,7 @@
 //  DayProgressCircleView.swift
 //  MinimalClocksWidgetExtension
 //
-//  Created by NovoTrax Dev1 on 11/01/25.
+//  Created by Hitesh Suthar on 11/01/25.
 //
 
 import Kingfisher

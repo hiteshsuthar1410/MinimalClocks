@@ -2,7 +2,7 @@
 //  UnsplashPhoto.swift
 //  MinimalClocks
 //
-//  Created by NovoTrax Dev1 on 19/01/25.
+//  Created by Hitesh Suthar on 19/01/25.
 //
 
 import Foundation

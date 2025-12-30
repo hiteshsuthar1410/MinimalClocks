@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MinimalClocksWidgetExtension" type="AppleAppExtensionRunConfiguration" factoryName="AppleAppExtension" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MinimalClocks" TARGET_NAME="MinimalClocks" CONFIG_NAME="Debug" IS_LOCATION_SIMULATION_SUPPORTED="true" SCHEME_NAME="MinimalClocksWidgetExtension" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" DEVELOPMENT_TEAM="${TEAM_ID}" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="true" APP_EXTENSION_TARGET="MinimalClocksWidgetExtension" EXTENSION_BUNDLE_ID="in.hiteshsuthar.MinimalClocks.MinimalClocksWidget" EXTENSION_TYPE_ID="com.apple.widgetkit-extension">
+    <envs>
+      <env name="_XCWidgetKind" value="" />
+      <env name="_XCWidgetDefaultView" value="timeline" />
+      <env name="_XCWidgetFamily" value="systemMedium" />
+    </envs>
+    <embedded_app_extension_list>
+      <app_extension BUNDLE_ID="in.hiteshsuthar.MinimalClocks.MinimalClocksWidget" EXTENSION_TYPE_ID="com.apple.widgetkit-extension" />
+    </embedded_app_extension_list>
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>

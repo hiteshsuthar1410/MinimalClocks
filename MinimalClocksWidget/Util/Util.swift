@@ -2,7 +2,7 @@
 //  Util.swift
 //  MinimalClocks
 //
-//  Created by NovoTrax Dev1 on 12/01/25.
+//  Created by Hitesh Suthar on 12/01/25.
 //
 
 import CoreLocation

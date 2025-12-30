@@ -2,7 +2,7 @@
 //  LocationSearchView.swift
 //  MinimalClocks
 //
-//  Created by Assistant on 01/01/25.
+//  Created by Hitesh Suthar on 01/01/25.
 //
 
 import SwiftUI

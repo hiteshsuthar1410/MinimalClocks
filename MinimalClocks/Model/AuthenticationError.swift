@@ -2,7 +2,7 @@
 //  AuthenticationError.swift
 //  MinimalClocks
 //
-//  Created by NovoTrax Dev1 on 30/10/25.
+//  Created by Hitesh Suthar on 30/10/25.
 //
 
 

@@ -11,10 +11,10 @@ import SwiftUI
 
 @main
 struct MinimalClocksApp: App {
-    @StateObject var authViewModel = AuthenticationViewModel()
+    private let authViewModel = AuthenticationViewModel()
     var body: some Scene {
         WindowGroup {
-            Group {
+            ZStack {
             if authViewModel.isLoading {
                 // Show a loading screen/spinner while Firebase checks the state
                 VStack {
@@ -29,14 +29,11 @@ struct MinimalClocksApp: App {
                 LoginView()
             }
         }
+        .animation(.easeInOut(duration: 0.45), value: authViewModel.isAuthenticated)
+
             
         }
         .modelContainer(for: QuoteModel.self)
-//        .modelContainer(for: GoogleWeatherApiResponse.self)
-    }
-    
-    init() {
-        FirebaseApp.configure()
     }
 }
 
