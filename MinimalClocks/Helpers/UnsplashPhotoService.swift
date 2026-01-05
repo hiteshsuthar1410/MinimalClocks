@@ -23,13 +23,24 @@ class UnsplashPhotoService {
     private init() {
         
     }
-    func fetchRandomPhoto(query: String) async throws -> (UIImage, UnsplashPhoto) {
+    func fetchRandomPhoto(query: String?) async throws -> (UIImage, UnsplashPhoto) {
         // Construct the URL with orientation and query
         var urlComponents = URLComponents(string: "https://api.unsplash.com/photos/random")!
         var queryItems = [URLQueryItem(name: "orientation", value: "landscape")]
-        if !query.isEmpty {
+        
+        // For random category, don't add query to get truly random images
+        // For other categories, add the query
+        if let query = query, !query.isEmpty {
             queryItems.append(URLQueryItem(name: "query", value: query))
         }
+        
+        // Filter out images with text by excluding certain keywords
+        // This helps avoid images with text that might interfere with quotes
+        if query != nil {
+            // Add content filter to prefer images without text
+            queryItems.append(URLQueryItem(name: "content_filter", value: "high"))
+        }
+        
         urlComponents.queryItems = queryItems
 
         guard let url = urlComponents.url else {
@@ -57,6 +68,10 @@ class UnsplashPhotoService {
         
         let (imageData, _) = try await URLSession.shared.data(from: URL(string: photoData.urls!.regular)!)
         return (UIImage(data: imageData) ?? UIImage(named: "backupGradi")!, photoData)
+    }
+    
+    func fetchRandomPhoto(category: BackgroundCategory) async throws -> (UIImage, UnsplashPhoto) {
+        return try await fetchRandomPhoto(query: category.unsplashQuery)
     }
 
 //    func fetchRandomPhoto(query: String) async throws -> (UIImage, UnsplashPhoto) {

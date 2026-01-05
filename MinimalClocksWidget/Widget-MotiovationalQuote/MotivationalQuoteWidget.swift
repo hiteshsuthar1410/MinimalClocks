@@ -29,9 +29,12 @@ struct MotivationalQuoteWidgetProvider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<MotivationalQuoteWidgetEntry>) -> Void) {
         Task {
             do {
+                // Load selected background category from App Group storage
+                var storage = AppGroupStorage()
+                let category = storage.loadBackgroundCategory()
                 
-                // Fetch relevant image
-                let imageData = try await UnsplashPhotoService.shared().fetchRandomPhoto(query: "Nature")
+                // Fetch relevant image based on selected category
+                let imageData = try await UnsplashPhotoService.shared().fetchRandomPhoto(category: category)
                 
                 // Build entry
                 let entry = MotivationalQuoteWidgetEntry(date: Date(), quote: QuoteModel.preview, unsplashPhoto: imageData.1, image: imageData.0)
@@ -167,8 +170,12 @@ extension MotivationalQuoteWidget {
     // Create async demo entry with real image data
     static func createAsyncDemoEntry() async -> MotivationalQuoteWidgetEntry {
         do {
-            // Try to fetch real image data
-            let imageData = try await UnsplashPhotoService.shared().fetchRandomPhoto(query: "Nature")
+            // Load selected background category from App Group storage
+            var storage = AppGroupStorage()
+            let category = storage.loadBackgroundCategory()
+            
+            // Try to fetch real image data based on selected category
+            let imageData = try await UnsplashPhotoService.shared().fetchRandomPhoto(category: category)
             
             // Use a random demo quote
             let randomQuote = demoQuoteEntries.randomElement()?.quote ?? QuoteModel.preview

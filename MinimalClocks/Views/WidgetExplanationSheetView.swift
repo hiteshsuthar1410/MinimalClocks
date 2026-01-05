@@ -8,17 +8,24 @@
 import SwiftUI
 import CoreLocation
 import WidgetKit
+import MeshingKit
 
 struct WidgetExplanationSheetView: View {
     let widgetInfo: MCWidgetInfo
     @Environment(\.dismiss) private var dismiss
     @State private var showingAddGuideSheet = false
     @State private var showingLocationSearch = false
+    @State private var showingBackgroundCategorySelection = false
     @State private var currentLocation: String = "Loading..."
+    @State private var currentBackgroundCategory: BackgroundCategory = .nature
     @State private var isRefreshing = false
     
     private var isWeatherWidget: Bool {
         widgetInfo.widgetType == .weatherTemperature || widgetInfo.widgetType == .weatherAQI
+    }
+    
+    private var isMotivationalQuoteWidget: Bool {
+        widgetInfo.widgetType == .motivationalQuote
     }
     
     var body: some View {
@@ -45,6 +52,11 @@ struct WidgetExplanationSheetView: View {
                     // Location Section (for weather widgets only)
                     if isWeatherWidget {
                         locationSection
+                    }
+                    
+                    // Background Category Section (for motivational quote widget only)
+                    if isMotivationalQuoteWidget {
+                        backgroundCategorySection
                     }
                     
                     // Description
@@ -89,11 +101,18 @@ struct WidgetExplanationSheetView: View {
                     handleLocationSelected(location: location, locality: locality)
                 }
             }
+            .sheet(isPresented: $showingBackgroundCategorySelection) {
+                BackgroundCategorySelectionView()
+            }
             .navigationTitle("Widget Details")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") { dismiss() }
+                    if isRefreshing {
+                        ProgressView()
+                    } else {
+                        Button("Done") { dismiss() }
+                    }
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -108,8 +127,59 @@ struct WidgetExplanationSheetView: View {
                 if isWeatherWidget {
                     loadCurrentLocation()
                 }
+                if isMotivationalQuoteWidget {
+                    loadCurrentBackgroundCategory()
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BackgroundCategoryDidChange"))) { _ in
+                if isMotivationalQuoteWidget {
+                    loadCurrentBackgroundCategory()
+                }
             }
         }
+    }
+    
+    // MARK: - Background Category Section
+    private var backgroundCategorySection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Background")
+                .font(.headline.weight(.semibold))
+            
+            HStack(spacing: 12) {
+                Image(systemName: "photo.fill")
+                    .foregroundColor(widgetInfo.color)
+                    .font(.title3)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(currentBackgroundCategory.displayName)
+                        .font(.body.weight(.medium))
+                        .foregroundColor(.primary)
+                }
+                
+                Spacer()
+                
+                Button(action: {
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        showingBackgroundCategorySelection = true
+                    }
+                }) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "pencil")
+                        Text("Change")
+                    }
+                    .font(.subheadline.weight(.medium))
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(widgetInfo.color)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                }
+            }
+            .padding(16)
+            .background(Color(.systemGray6))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     // MARK: - Location Section
@@ -124,16 +194,16 @@ struct WidgetExplanationSheetView: View {
                     .font(.title3)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Current Location")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    
-                    Text(currentLocation)
-                        .font(.body.weight(.medium))
-                        .foregroundColor(.primary)
+                    HStack {
+                        Text(currentLocation)
+                            .font(.body.weight(.medium))
+                            .foregroundColor(.primary)
+                    }
                 }
                 
                 Spacer()
+                
+
                 
                 Button(action: {
                     showingLocationSearch = true
@@ -151,19 +221,18 @@ struct WidgetExplanationSheetView: View {
                 }
             }
             .padding(16)
-            .background(Color(.systemGray6))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            
-            if isRefreshing {
-                HStack {
-                    ProgressView()
-                        .scaleEffect(0.8)
-                    Text("Updating weather data...")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+            .background {
+                if isRefreshing {
+                    MeshingKit.animatedGradient(
+                        .size3(.etherealMist),
+                        showAnimation: .constant(true),
+                        animationSpeed: 3
+                    ).opacity(0.3)
+                } else {
+                    Color(.systemGray6)
                 }
-                .padding(.leading, 16)
             }
+            .clipShape(RoundedRectangle(cornerRadius: 12))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -175,8 +244,15 @@ struct WidgetExplanationSheetView: View {
         currentLocation = locationData.locality ?? "Unknown Location"
     }
     
+    private func loadCurrentBackgroundCategory() {
+        var storage = AppGroupStorage()
+        currentBackgroundCategory = storage.loadBackgroundCategory()
+    }
+    
     private func handleLocationSelected(location: CLLocation, locality: String) {
-        isRefreshing = true
+        withAnimation {
+            isRefreshing = true
+        }
         
         // Save location to shared defaults
         var storage = AppGroupStorage()
@@ -190,7 +266,9 @@ struct WidgetExplanationSheetView: View {
             await refreshWeatherData(location: location, locality: locality)
             
             DispatchQueue.main.async {
-                isRefreshing = false
+                withAnimation {
+                    isRefreshing = false
+                }
                 
                 // Post notification to update ContentView previews
                 NotificationCenter.default.post(name: NSNotification.Name("LocationDidChange"), object: nil)
@@ -209,3 +287,9 @@ struct WidgetExplanationSheetView: View {
         _ = await repo.fetchAndSaveLatestHourlyAQI(for: location, locality: locality)
     }
 }
+
+// MARK: - Preview
+#Preview {
+    WidgetExplanationSheetView(widgetInfo: MCWidgetInfo.info(for: .weatherAQI)!)
+}
+

@@ -52,4 +52,18 @@ struct AppGroupStorage {
             let data = try Data(contentsOf: url)
             return try JSONDecoder().decode(type, from: data)
         }
+    
+    // MARK: - Background Category Storage
+    mutating func saveBackgroundCategory(_ category: BackgroundCategory) {
+        sharedDefaults.set(category.rawValue, forKey: "selectedBackgroundCategory")
+        sharedDefaults.synchronize()
+    }
+    
+    mutating func loadBackgroundCategory() -> BackgroundCategory {
+        guard let categoryString = sharedDefaults.string(forKey: "selectedBackgroundCategory"),
+              let category = BackgroundCategory(rawValue: categoryString) else {
+            return .nature // Default category
+        }
+        return category
+    }
 }

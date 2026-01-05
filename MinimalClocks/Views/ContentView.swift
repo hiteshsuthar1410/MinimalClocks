@@ -81,8 +81,7 @@ struct ContentView: View {
         .task {
             authenticateUser()
             locationHandler.fetchLocation()
-            do {
-                motivationalQuoteWidgetBGImage = try await UnsplashPhotoService.shared().fetchRandomPhoto(query: "Nature").0 } catch {}
+            await loadMotivationalQuoteBackground()
             do {
                 try await QuoteService.shared.refreshQuotesIfNeeded(context: context, threshold: 10)
             } catch {
@@ -98,6 +97,12 @@ struct ContentView: View {
                 await loadWeatherAndAQIData()
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BackgroundCategoryDidChange"))) { _ in
+            // Refresh background image when category changes
+            Task {
+                await loadMotivationalQuoteBackground()
+            }
+        }
         .sheet(item: $showSheet) { sheet in
             switch sheet {
             case .profile:
@@ -109,6 +114,7 @@ struct ContentView: View {
                 
             case .widgetInfo(let widgetInfo):
                 WidgetExplanationSheetView(widgetInfo: MCWidgetInfo.info(for: widgetInfo)!)
+                    .interactiveDismissDisabled(true)
             }
         }
     }
@@ -413,6 +419,17 @@ extension ContentView {
 }
 
 extension ContentView {
+    func loadMotivationalQuoteBackground() async {
+        var storage = AppGroupStorage()
+        let category = storage.loadBackgroundCategory()
+        
+        do {
+            motivationalQuoteWidgetBGImage = try await UnsplashPhotoService.shared().fetchRandomPhoto(category: category).0
+        } catch {
+            print("Failed to load motivational quote background: \(error)")
+        }
+    }
+    
     func loadWeatherAndAQIData() async {
         // Load weather and AQI data
         async let weatherTask = loadLatestWeatherEntry()
