@@ -21,6 +21,7 @@ struct ProfileView: View {
     @State private var userName: String?
     @State private var userEmail: String?
     @State private var userPhotoURL: String?
+    @State private var showSignOutAlert = false
     @State private var showFeedbackSheet = false
 
     var body: some View {
@@ -128,13 +129,7 @@ struct ProfileView: View {
                         
                         // Logout Button
                         Button {
-                            do {
-                                try Auth.auth().signOut()
-                                // User data will be cleared automatically by AuthenticationViewModel
-                                loadUserData() // Refresh UI
-                            } catch {
-                                print("Error Signing out: \(error)")
-                            }
+                            showSignOutAlert = true
                         } label: {
                             Text("Sign Out")
                                 .font(.headline)
@@ -154,6 +149,20 @@ struct ProfileView: View {
                 }
             }
             .ignoresSafeArea(edges: [.bottom])
+            .alert("Sign Out", isPresented: $showSignOutAlert) {
+                Button("Cancel", role: .cancel) { }
+                Button("Sign Out", role: .destructive) {
+                    do {
+                        try Auth.auth().signOut()
+                        loadUserData()
+                    } catch {
+                        print("Error Signing out: \(error)")
+                    }
+                }
+            } message: {
+                Text("Are you sure you want to sign out?")
+            }
+
             .sheet(isPresented: $showFeedbackSheet) {
                 MailComposerViewController(recipients: ["hiteshsuthar1410@icloud.com"], subject: "App Feedback", messageBody: "")
             }

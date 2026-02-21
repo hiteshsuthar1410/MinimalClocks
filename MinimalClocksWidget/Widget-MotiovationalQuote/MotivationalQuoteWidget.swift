@@ -86,6 +86,7 @@ struct MotivationalQuoteWidget: Widget {
         .supportedFamilies([.systemMedium])
         .configurationDisplayName("Motivational Quote")
         .description("An inpirational quote with a beautiful backdrop.")
+        .contentMarginsDisabled()
     }
 }
 

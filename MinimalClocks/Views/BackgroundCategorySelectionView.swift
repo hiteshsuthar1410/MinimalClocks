@@ -18,14 +18,14 @@ struct BackgroundCategorySelectionView: View {
     private var storage = AppGroupStorage()
     
     init() {
-        let storage = AppGroupStorage()
+        _ = AppGroupStorage()
         _selectedCategory = State(
             initialValue: self.storage.loadBackgroundCategory()
         )
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 LazyVGrid(columns: [
                     GridItem(.flexible(), spacing: 12),
@@ -47,7 +47,7 @@ struct BackgroundCategorySelectionView: View {
                 .padding(.horizontal, 16)
                 .padding(.vertical, 16)
             }
-            .navigationTitle("Choose Background")
+            .navigationTitle("Choose Category")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -69,33 +69,42 @@ struct BackgroundCategorySelectionView: View {
     }
     
     private func loadSampleImages() async {
-        // Fetch actual sample images from Unsplash for each category
-        // This ensures we get distinct, real images for each category
-        for category in BackgroundCategory.allCases {
-            if category == .random {
-                // For random, use a default image
-                categoryImageURLs[category] = category.sampleImageURL
-                continue
-            }
-            
-            // Fetch a real sample image for this category
-            do {
-                let (_, photo) = try await UnsplashPhotoService.shared().fetchRandomPhoto(query: category.unsplashQuery)
-                if let regularURL = photo.urls?.regular {
-                    categoryImageURLs[category] = regularURL
-                } else {
-                    // Fallback to predefined URL
-                    categoryImageURLs[category] = category.sampleImageURL
+        await withTaskGroup(of: (BackgroundCategory, String).self) { group in
+
+            for category in BackgroundCategory.allCases {
+                group.addTask {
+                    // Random category uses fallback directly
+                    if category == .random {
+                        return (category, category.sampleImageURL)
+                    }
+
+                    do {
+                        let (_, photo) = try await UnsplashPhotoService
+                            .shared()
+                            .fetchRandomPhoto(query: category.unsplashQuery)
+
+                        if let url = photo.urls?.regular {
+                            return (category, url)
+                        } else {
+                            return (category, category.sampleImageURL)
+                        }
+                    } catch {
+                        return (category, category.sampleImageURL)
+                    }
                 }
-            } catch {
-                // Fallback to predefined URL if fetch fails
-                categoryImageURLs[category] = category.sampleImageURL
+            }
+
+            // Collect results as they complete (unordered)
+            for await (category, url) in group {
+                await MainActor.run {
+                    categoryImageURLs[category] = url
+                }
             }
         }
     }
     
     private func selectCategory(_ category: BackgroundCategory) {
-        selectedCategory = category
+        selectedCategory = category 
     }
     
     private func saveSelection() {
@@ -120,7 +129,7 @@ struct CategoryCard: View {
         Button(action: onTap) {
             VStack(spacing: 0) {
                 // Sample image - use fetched URL or fallback to category's sample URL
-                KFImage(URL(string: imageURL ?? category.sampleImageURL))
+                KFImage(URL(string: imageURL ?? ""))
                     .placeholder {
                         Rectangle()
                             .fill(
@@ -138,14 +147,20 @@ struct CategoryCard: View {
                             }
                     }
                     .resizable()
-                    .aspectRatio(16/9, contentMode: .fill)
+                    .aspectRatio(contentMode: .fill)
                     .frame(height: 120)
                     .clipped()
                 
                 // Category name
                 HStack {
                     Text(category.displayName)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(
+                            .system(
+                                size: 16,
+                                weight: .semibold,
+                                design: .rounded
+                            )
+                        )
                         .foregroundColor(.primary)
                     
                     Spacer()
@@ -158,7 +173,7 @@ struct CategoryCard: View {
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
-                .background(Color(.systemBackground))
+                .background(Color(.secondarySystemBackground))
             }
             .background(Color(.systemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -169,7 +184,7 @@ struct CategoryCard: View {
             .shadow(color: isSelected ? Color.blue.opacity(0.3) : Color.black.opacity(0.1), radius: isSelected ? 8 : 4, y: 2)
             .scaleEffect(isSelected ? 1.02 : 1.0)
         }
-        .buttonStyle(PlainButtonStyle())
+//        .buttonStyle(PlainButtonStyle())
     }
 }
 

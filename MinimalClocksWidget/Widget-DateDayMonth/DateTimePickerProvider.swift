@@ -5,14 +5,6 @@
 //  Created by Hitesh Suthar on 01/11/25.
 //
 
-
-//
-//  DateTimePickerWidget.swift
-//  MinimalClocks
-//
-//  Created by Hitesh Suthar
-//
-
 import WidgetKit
 import SwiftUI
 

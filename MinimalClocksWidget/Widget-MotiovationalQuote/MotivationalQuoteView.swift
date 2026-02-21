@@ -7,7 +7,7 @@
 
 import Kingfisher
 import SwiftData
-import SwiftUI
+import SwiftUI 
 import WidgetKit
 
 struct MotivationalQuoteView: View {
@@ -17,11 +17,15 @@ struct MotivationalQuoteView: View {
     
     var body: some View {
         ZStack {
-            Image(uiImage: entry.image ?? UIImage(named: "backupGradi")!)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 380)
-                // .clipped()
+            if let entryImage = entry.image {
+                Image(uiImage: entryImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                Color.blue
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
             
             Text(currentQuote.text)
                 .font(.custom("Outfit", size: 22))
@@ -35,8 +39,8 @@ struct MotivationalQuoteView: View {
                 .environment(\.colorScheme, .dark)
                 
         }
-        .frame(width: 380)
-        .frame(height: 160)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .clipped()
     }
     
     private var currentQuote: QuoteModel {
@@ -63,6 +67,6 @@ struct WidgetViewPreviews: PreviewProvider {
         MotivationalQuoteView(entry: MotivationalQuoteWidgetEntry(date: Date(), quote: QuoteModel.preview, unsplashPhoto: UnsplashPhoto.preview, image: nil))
             .containerBackground(.red.opacity(0), for: .widget)
     }
-    .previewContext(WidgetPreviewContext(family: .systemLarge))
+    .previewContext(WidgetPreviewContext(family: .systemMedium))
   }
 }

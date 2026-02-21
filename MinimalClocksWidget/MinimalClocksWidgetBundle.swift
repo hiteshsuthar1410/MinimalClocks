@@ -11,7 +11,6 @@ import SwiftUI
 @main
 struct MinimalClocksWidgetBundle: WidgetBundle {
     var body: some Widget {
-        MinimalClocksWidget()
         DayProgressCircleWidget()
         DayProgressBarWidget()
         MotivationalQuoteWidget()
